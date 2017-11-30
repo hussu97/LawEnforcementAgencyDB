@@ -60,6 +60,9 @@ public class hello extends JFrame {
 		JMenuItem mntmWhqtIsThis = new JMenuItem("Whqt is this");
 		mntmWhqtIsThis.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_I, InputEvent.CTRL_MASK));
 		mnHello.add(mntmWhqtIsThis);
+		
+		JMenu mnHhi = new JMenu("hhi");
+		menuBar.add(mnHhi);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
