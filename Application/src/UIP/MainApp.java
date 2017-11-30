@@ -13,7 +13,7 @@ import javax.swing.JFrame;
  *
  * @author sradder
  */
-public class LA10 {
+public class MainApp {
 
     /**
      * @param args the command line arguments
@@ -31,7 +31,7 @@ public class LA10 {
         //Login form opens up first
         Runnable r = new Runnable() {
             public void run() {
-                new LogInForm(formList).setVisible(true);
+                new MainMenu(formList).setVisible(true);        
             }
         };
         java.awt.EventQueue.invokeLater(r);
@@ -40,7 +40,7 @@ public class LA10 {
          //Not shown to the user
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainMenuForm(formList).setVisible(false);
+                new EmployeeInfo(formList).setVisible(false);
             }
         });
 
@@ -48,19 +48,19 @@ public class LA10 {
          //Not shown to the user
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CarDetailsForm(formList).setVisible(false);
+                new StationInfo(formList).setVisible(false);
             }
         });
         //Load AddUserdetails form as a thread
          //Not shown to the user
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AddUserForm(formList).setVisible(false);
+                new AddEmployee1(formList).setVisible(false);
             }
         });
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AddCarForm(formList).setVisible(false);
+                new AddEmployeeGuard(formList).setVisible(false);
             }
         });
 

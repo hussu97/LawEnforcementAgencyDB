@@ -10,7 +10,7 @@ public class Driver
     {
         try {
            //CreateCarDatabase.createDatabase();
-           CreateUserDatabase.createUserDatabase();
+           //CreateUserDatabase.createUserDatabase();
             
         } catch (SQLException ex) {
             Logger.getLogger(Driver.class.getName()).log(Level.SEVERE, null, ex);

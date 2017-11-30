@@ -9,13 +9,11 @@ package DSP;
 import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.Statement;
  
 public class OracleJDBCConnection {
     
  public static String JDBC_CONNECTION_DRIVER =  "oracle.jdbc.driver.OracleDriver"; 
- //public static String  CONNECTION_STRING = "jdbc:oracle:thin:@coeoracle.aus.edu:1521:orcl," + "sli00011238,"+ "sli00011238";
- public static String  CONNECTION_STRING = "jdbc:oracle:thin:b00063271/b00063271@coeoracle.aus.edu:1521:orcl";
+ public static String  CONNECTION_STRING = "jdbc:oracle:thin:tf20170006/tf20170006@coeoracle.aus.edu:1521:orcl";
  public static Connection connectDataBase()
  {
      System.out.println("-------- Oracle JDBC Connection Testing ------");
