@@ -11,6 +11,14 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import ALP.Employee;
+import DSP.OracleJDBCConnection;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -22,10 +30,13 @@ public class AddEmployee1 extends javax.swing.JFrame {
      * Creates new form AddEmployee1
      */
     ArrayList<JFrame> formList;
+    DefaultComboBoxModel station=new DefaultComboBoxModel();
+    DefaultComboBoxModel prison=new DefaultComboBoxModel();
     public AddEmployee1(ArrayList<JFrame> formList) {
         this.formList=formList;
         this.setResizable(false);
         formList.add(this);
+        setComboBox();
         initComponents();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
@@ -33,6 +44,37 @@ public class AddEmployee1 extends javax.swing.JFrame {
         
     }
 
+    public void setComboBox(){   
+        station.removeAllElements();
+        prison.removeAllElements();
+        station.addElement("N/A");
+        prison.addElement("N/A");
+        Connection conn=OracleJDBCConnection.connectDataBase();
+        Statement st=null;
+        try {
+            st=conn.createStatement();
+            ResultSet rs=st.executeQuery("SELECT STATION_LOCATION FROM STATION");
+            while(rs.next()){
+                station.addElement(rs.getString(1));
+            }
+            rs=st.executeQuery("SELECT PRISON_LOCATION FROM PRISON");
+            while(rs.next()){
+                prison.addElement(rs.getString(1));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AddEmployee1.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public void clear(){
+        NameField.setText("");
+        SSNField.setText("");
+        MobileField.setText("");
+        DateField.setText("");
+        setComboBox();
+        StationField.setSelectedIndex(0);
+        PrisonField.setSelectedIndex(0);
+        CopButton.setSelected(true);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -58,11 +100,11 @@ public class AddEmployee1 extends javax.swing.JFrame {
         SSNField = new javax.swing.JTextField();
         MobileField = new javax.swing.JTextField();
         DateField = new javax.swing.JTextField();
-        StationField = new javax.swing.JTextField();
-        PrisonField = new javax.swing.JTextField();
         CopButton = new javax.swing.JRadioButton();
         GuardButton = new javax.swing.JRadioButton();
         ClericalButton = new javax.swing.JRadioButton();
+        StationField = new javax.swing.JComboBox<>();
+        PrisonField = new javax.swing.JComboBox<>();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
@@ -96,15 +138,15 @@ public class AddEmployee1 extends javax.swing.JFrame {
 
         jLabel4.setText("SSN*");
 
-        jLabel5.setText("Mobile No.*");
+        jLabel5.setText("Mobile No.*               05");
 
-        jLabel6.setText("Hire Date*");
+        jLabel6.setText("Hire Date* (DD-MMM-YY)");
 
-        jLabel7.setText("Station");
+        jLabel7.setText("Station (If Cop)");
 
         jLabel8.setText("Prison");
 
-        jLabel9.setText("Employee Type");
+        jLabel9.setText("Employee Type*");
 
         jButton1.setText("Back");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -120,6 +162,12 @@ public class AddEmployee1 extends javax.swing.JFrame {
             }
         });
 
+        MobileField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MobileFieldActionPerformed(evt);
+            }
+        });
+
         EmployeeType.add(CopButton);
         CopButton.setText("Cop");
 
@@ -128,6 +176,10 @@ public class AddEmployee1 extends javax.swing.JFrame {
 
         EmployeeType.add(ClericalButton);
         ClericalButton.setText("Clerical");
+
+        StationField.setModel(station);
+
+        PrisonField.setModel(prison);
 
         jMenu1.setText("File");
 
@@ -241,12 +293,11 @@ public class AddEmployee1 extends javax.swing.JFrame {
                                 .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(NameField, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
+                            .addComponent(NameField)
                             .addComponent(SSNField)
                             .addComponent(DateField)
                             .addComponent(MobileField)
-                            .addComponent(StationField)
-                            .addComponent(PrisonField)
+                            .addComponent(StationField, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(CopButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -255,7 +306,9 @@ public class AddEmployee1 extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(GuardButton)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(ClericalButton)))))))
+                                        .addComponent(ClericalButton)))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(PrisonField, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -305,23 +358,6 @@ public class AddEmployee1 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem6exitClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6exitClicked
-        // TODO add your handling code here:
-        System.exit(0);
-    }//GEN-LAST:event_jMenuItem6exitClicked
-
-    private void jMenuItem1addEmpClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1addEmpClicked
-        // TODO add your handling code here:
-        this.setVisible(false);
-        for (JFrame frame : formList) {
-            if (frame instanceof AddEmployee1) {
-                frame.setVisible(true);
-                break;
-
-            }
-        }
-    }//GEN-LAST:event_jMenuItem1addEmpClicked
-
     private void backClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backClicked
         // TODO add your handling code here:
         this.setVisible(false);
@@ -337,29 +373,69 @@ public class AddEmployee1 extends javax.swing.JFrame {
     private void nextClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextClicked
         // TODO add your handling code here:
         if(NameField.getText().equals("")||SSNField.getText().equals("")||MobileField.getText().equals("")||DateField.getText().equals("")){
-        JOptionPane.showMessageDialog(null,"Some of the mandatory fields are empty","Error",JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(null,"Some of the fields are invalid","Error",JOptionPane.ERROR_MESSAGE);
     }
         else{
             Employee.SSN=SSNField.getText().trim();
             Employee.name=NameField.getText().trim();
-            Employee.contact=MobileField.getText().trim();
+            Employee.contact="05"+MobileField.getText().trim();
             Employee.date=DateField.getText().trim();
-            Employee.station=StationField.getText().trim();
-            Employee.prison=PrisonField.getText().trim();
-            Employee.station = Employee.station.equals("")? "NULL":Employee.station;
-            Employee.prison = Employee.prison.equals("")? "NULL":Employee.prison;
+            Employee.station=StationField.getSelectedItem().toString().trim();
+            Employee.prison=PrisonField.getSelectedItem().toString().trim();
             if(EmployeeType.getSelection().equals(GuardButton.getModel())){
                 this.setVisible(false);
                 for (JFrame frame : formList) {
-            if (frame instanceof AddEmployeeGuard) {
+                    if (frame instanceof AddEmployeeGuard) {
+                        ((AddEmployeeGuard) frame).clear();
+                        frame.setVisible(true);
+                        break;
+                    }
+                }
+            }
+            else if(EmployeeType.getSelection().equals(CopButton.getModel())){
+                this.setVisible(false);
+                for (JFrame frame : formList) {
+                    if (frame instanceof AddEmployeeCop) {
+                        ((AddEmployeeCop) frame).clear();
+                        frame.setVisible(true);
+                        break;
+                    }
+                }
+            }
+            else{
+                this.setVisible(false);
+                for (JFrame frame : formList) {
+                    if (frame instanceof AddEmployeeClerical) {
+                        ((AddEmployeeClerical) frame).clear();
+                        frame.setVisible(true);
+                        break;
+                    }
+                }
+            }
+        }
+    }//GEN-LAST:event_nextClicked
+
+    private void jMenuItem6exitClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6exitClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jMenuItem6exitClicked
+
+    private void jMenuItem1addEmpClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1addEmpClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+        for (JFrame frame : formList) {
+            if (frame instanceof AddEmployee1) {
+                ((AddEmployee1) frame).clear();
                 frame.setVisible(true);
                 break;
 
             }
         }
-            }
-        }
-    }//GEN-LAST:event_nextClicked
+    }//GEN-LAST:event_jMenuItem1addEmpClicked
+
+    private void MobileFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MobileFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MobileFieldActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton ClericalButton;
@@ -369,9 +445,9 @@ public class AddEmployee1 extends javax.swing.JFrame {
     private javax.swing.JRadioButton GuardButton;
     private javax.swing.JTextField MobileField;
     private javax.swing.JTextField NameField;
-    private javax.swing.JTextField PrisonField;
+    private javax.swing.JComboBox<String> PrisonField;
     private javax.swing.JTextField SSNField;
-    private javax.swing.JTextField StationField;
+    private javax.swing.JComboBox<String> StationField;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;

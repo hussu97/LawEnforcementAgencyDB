@@ -22,9 +22,6 @@ public class MainApp {
         // TODO code application logic here
         //Load the requied datanses proceesed 
         //at application level
-       
-        //Load user database
-        //DataStore.loadUserDatabase();
 
         final ArrayList<JFrame> formList = new ArrayList<JFrame>();
     
@@ -61,6 +58,16 @@ public class MainApp {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new AddEmployeeGuard(formList).setVisible(false);
+            }
+        });
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new AddEmployeeCop(formList).setVisible(false);
+            }
+        });
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new AddEmployeeClerical(formList).setVisible(false);
             }
         });
 

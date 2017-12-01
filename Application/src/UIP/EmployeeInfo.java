@@ -245,6 +245,7 @@ public class EmployeeInfo extends javax.swing.JFrame {
         this.setVisible(false);
                 for (JFrame frame : formList) {
                     if (frame instanceof AddEmployee1) {
+                        ((AddEmployee1) frame).clear();
                         frame.setVisible(true);
                         break;
 

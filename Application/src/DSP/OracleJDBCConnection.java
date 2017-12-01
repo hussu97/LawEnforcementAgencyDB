@@ -6,9 +6,14 @@
 
 package DSP;
 
+import ALP.*;
 import java.sql.DriverManager;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
  
 public class OracleJDBCConnection {
     
@@ -46,11 +51,34 @@ public class OracleJDBCConnection {
  }
  		if (connection != null) {
                     System.out.println("Connectioned to database");
-			return connection;
+                    
+                try {
+                    Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+                        ResultSet.CONCUR_UPDATABLE);
+                    ResultSet rs = statement.executeQuery("SELECT MAX(EMP_ID) FROM EMPLOYEE");
+                    while(rs.next()){
+                        int ID=rs.getInt(1);
+                        Employee.ID=ID;
+                    }
+                    rs = statement.executeQuery("SELECT MAX(INMATE_ID) FROM INMATE");
+                    while(rs.next()){
+                        int ID=rs.getInt(1);
+                        Inmate.ID=ID;
+                    }
+                    rs = statement.executeQuery("SELECT MAX(PRISON_ID) FROM PRISON");
+                    while(rs.next()){
+                        int ID=rs.getInt(1);
+                        Prison.ID=ID;
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(OracleJDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                    return connection;
 		} else {
                     System.out.println("Connection Failed! Check");
 			return null;
 		}
+                
                 
  }
 }

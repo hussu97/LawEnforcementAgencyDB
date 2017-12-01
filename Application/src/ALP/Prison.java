@@ -9,14 +9,8 @@ package ALP;
  *
  * @author H_Abb
  */
-public class Employee {
+public class Prison {
     public static int ID;
-    public static String name="";
-    public static String SSN="";
-    public static String contact="";
-    public static String date="";
-    public static String station="";
-    public static String prison="";
     public static int getID(){
         return ++ID;
     }
