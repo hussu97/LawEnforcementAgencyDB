@@ -50,7 +50,7 @@ public class OracleJDBCConnection {
 			return null;
  }
  		if (connection != null) {
-                    System.out.println("Connectioned to database");
+                    System.out.println("Connected to database");
                     
                 try {
                     Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
@@ -69,6 +69,11 @@ public class OracleJDBCConnection {
                     while(rs.next()){
                         int ID=rs.getInt(1);
                         Prison.ID=ID;
+                    }
+                    rs = statement.executeQuery("SELECT MAX(CELL_ID) FROM CELL");
+                    while(rs.next()){
+                        int ID=rs.getInt(1);
+                        Cell.ID=ID;
                     }
                 } catch (SQLException ex) {
                     Logger.getLogger(OracleJDBCConnection.class.getName()).log(Level.SEVERE, null, ex);

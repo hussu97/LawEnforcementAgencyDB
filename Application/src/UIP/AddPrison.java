@@ -84,10 +84,10 @@ public class AddPrison extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Add Prison");
 
-        jButton1.setText("Add");
+        jButton1.setText("Submit");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addClicked(evt);
+                submitClicked(evt);
             }
         });
 
@@ -292,7 +292,7 @@ public class AddPrison extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton2backClicked
 
-    private void addClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addClicked
+    private void submitClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitClicked
         // TODO add your handling code here:
         if(LocationField.getText().equals("")){
         }
@@ -326,7 +326,7 @@ public class AddPrison extends javax.swing.JFrame {
                 Logger.getLogger(AddEmployeeClerical.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-    }//GEN-LAST:event_addClicked
+    }//GEN-LAST:event_submitClicked
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField LocationField;
     private javax.swing.JButton jButton1;

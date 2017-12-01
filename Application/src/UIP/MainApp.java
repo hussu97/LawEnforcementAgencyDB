@@ -21,64 +21,21 @@ public class MainApp {
     public static void main(String[] args) {
         // TODO code application logic here
 
-        final ArrayList<JFrame> formList = new ArrayList<JFrame>();
-        Runnable r = new Runnable() {
-            public void run() {
-                new MainMenu(formList).setVisible(true);        
-            }
-        };
+        final ArrayList<JFrame> formList = new ArrayList<>();
+        Runnable r = () -> {new MainMenu(formList).setVisible(true);};
         java.awt.EventQueue.invokeLater(r);
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new EmployeeInfo(formList).setVisible(false);
-            }
-        });
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new StationInfo(formList).setVisible(false);
-            }
-        });
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PrisonInfo(formList).setVisible(false);
-            }
-        });
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AddEmployee1(formList).setVisible(false);
-            }
-        });
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AddEmployeeGuard(formList).setVisible(false);
-            }
-        });
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AddEmployeeCop(formList).setVisible(false);
-            }
-        });
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AddEmployeeClerical(formList).setVisible(false);
-            }
-        });
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ViewPrison(formList).setVisible(false);
-            }
-        });
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AddPrison(formList).setVisible(false);
-            }
-        });
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ViewInmate(formList).setVisible(false);
-            }
-        });
-
+        
+        java.awt.EventQueue.invokeLater(() -> {new EmployeeInfo(formList).setVisible(false);});
+        java.awt.EventQueue.invokeLater(() -> {new StationInfo(formList).setVisible(false);});
+        java.awt.EventQueue.invokeLater(() -> {new PrisonInfo(formList).setVisible(false);});
+        java.awt.EventQueue.invokeLater(() -> {new AddEmployee1(formList).setVisible(false);});
+        java.awt.EventQueue.invokeLater(() -> {new AddEmployeeGuard(formList).setVisible(false);});
+        java.awt.EventQueue.invokeLater(() -> {new AddEmployeeCop(formList).setVisible(false);});
+        java.awt.EventQueue.invokeLater(() -> {new AddEmployeeClerical(formList).setVisible(false);});
+        java.awt.EventQueue.invokeLater(() -> {new ViewPrison(formList).setVisible(false);});
+        java.awt.EventQueue.invokeLater(() -> {new AddPrison(formList).setVisible(false);});
+        java.awt.EventQueue.invokeLater(() -> {new ViewInmate(formList).setVisible(false);});
+        java.awt.EventQueue.invokeLater(() -> {new AddInmate(formList).setVisible(false);});
+        java.awt.EventQueue.invokeLater(() -> {new AddCell(formList).setVisible(false);});
     }
-
 }

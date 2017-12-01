@@ -36,7 +36,6 @@ public class AddEmployee1 extends javax.swing.JFrame {
         this.formList=formList;
         this.setResizable(false);
         formList.add(this);
-        setComboBox();
         initComponents();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
@@ -44,7 +43,7 @@ public class AddEmployee1 extends javax.swing.JFrame {
         
     }
 
-    public void setComboBox(){   
+    private void setComboBox(){   
         station.removeAllElements();
         prison.removeAllElements();
         station.addElement("N/A");

@@ -43,14 +43,12 @@ public class EmployeeInfo extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
@@ -63,7 +61,6 @@ public class EmployeeInfo extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem13 = new javax.swing.JMenuItem();
-        jMenuItem11 = new javax.swing.JMenuItem();
         jMenuItem12 = new javax.swing.JMenuItem();
 
         jMenuItem16.setText("jMenuItem16");
@@ -82,12 +79,10 @@ public class EmployeeInfo extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("View Employees");
-
-        jButton3.setText("Edit Employee");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButton2.setText("View Employee");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                viewEmployeeClicked(evt);
             }
         });
 
@@ -104,7 +99,7 @@ public class EmployeeInfo extends javax.swing.JFrame {
         jMenuItem6.setText("Exit");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                exitClicked(evt);
+                jMenuItem6exitClicked(evt);
             }
         });
         jMenu1.add(jMenuItem6);
@@ -117,17 +112,18 @@ public class EmployeeInfo extends javax.swing.JFrame {
         jMenuItem1.setText("Add Employee");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addEmpClicked(evt);
+                jMenuItem1addEmpClicked(evt);
             }
         });
         jMenu2.add(jMenuItem1);
 
-        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem2.setText("Edit Employee");
-        jMenu2.add(jMenuItem2);
-
         jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem3.setText("View Employees");
+        jMenuItem3.setText("View Employee");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewEmployeeClicked(evt);
+            }
+        });
         jMenu2.add(jMenuItem3);
 
         jMenuBar1.add(jMenu2);
@@ -160,26 +156,47 @@ public class EmployeeInfo extends javax.swing.JFrame {
 
         jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem4.setText("View Prison");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4viewPrisonClicked(evt);
+            }
+        });
         jMenu4.add(jMenuItem4);
 
         jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_J, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem5.setText("Add Prison");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5addPrisonClicked(evt);
+            }
+        });
         jMenu4.add(jMenuItem5);
 
         jMenuItem10.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_K, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem10.setText("View Inmates");
+        jMenuItem10.setText("View Inmate");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10viewInmateClicked(evt);
+            }
+        });
         jMenu4.add(jMenuItem10);
 
         jMenuItem13.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem13.setText("Add Inmate");
+        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem13addInmateClicked(evt);
+            }
+        });
         jMenu4.add(jMenuItem13);
-
-        jMenuItem11.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem11.setText("View Cells");
-        jMenu4.add(jMenuItem11);
 
         jMenuItem12.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem12.setText("Add Cell");
+        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem12addCellClicked(evt);
+            }
+        });
         jMenu4.add(jMenuItem12);
 
         jMenuBar1.add(jMenu4);
@@ -196,7 +213,6 @@ public class EmployeeInfo extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -208,25 +224,14 @@ public class EmployeeInfo extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton4)
-                .addContainerGap(154, Short.MAX_VALUE))
+                .addContainerGap(224, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void exitClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitClicked
-        // TODO add your handling code here:
-        System.exit(0);
-    }//GEN-LAST:event_exitClicked
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void backClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backClicked
         // TODO add your handling code here:
@@ -253,10 +258,103 @@ public class EmployeeInfo extends javax.swing.JFrame {
                 }
     }//GEN-LAST:event_addEmpClicked
 
+    private void jMenuItem6exitClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6exitClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jMenuItem6exitClicked
+
+    private void jMenuItem1addEmpClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1addEmpClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+        for (JFrame frame : formList) {
+            if (frame instanceof AddEmployee1) {
+                ((AddEmployee1) frame).clear();
+                frame.setVisible(true);
+                break;
+
+            }
+        }
+    }//GEN-LAST:event_jMenuItem1addEmpClicked
+
+    private void viewEmployeeClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewEmployeeClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+        for (JFrame frame : formList) {
+            if (frame instanceof ViewEmployee) {
+                ((ViewEmployee) frame).clear();
+                frame.setVisible(true);
+                break;
+
+            }
+        }
+    }//GEN-LAST:event_viewEmployeeClicked
+
+    private void jMenuItem4viewPrisonClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4viewPrisonClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+        for (JFrame frame : formList) {
+            if (frame instanceof ViewPrison) {
+                ((ViewPrison) frame).clear();
+                frame.setVisible(true);
+                break;
+
+            }
+        }
+    }//GEN-LAST:event_jMenuItem4viewPrisonClicked
+
+    private void jMenuItem5addPrisonClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5addPrisonClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+        for (JFrame frame : formList) {
+            if (frame instanceof AddPrison) {
+                ((AddPrison) frame).clear();
+                frame.setVisible(true);
+                break;
+
+            }
+        }
+    }//GEN-LAST:event_jMenuItem5addPrisonClicked
+
+    private void jMenuItem10viewInmateClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10viewInmateClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+        for (JFrame frame : formList) {
+            if (frame instanceof ViewInmate) {
+                ((ViewInmate) frame).clear();
+                frame.setVisible(true);
+                break;
+            }
+        }
+    }//GEN-LAST:event_jMenuItem10viewInmateClicked
+
+    private void jMenuItem13addInmateClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13addInmateClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+        for (JFrame frame : formList) {
+            if (frame instanceof AddInmate) {
+                ((AddInmate) frame).clear();
+                frame.setVisible(true);
+                break;
+            }
+        }
+    }//GEN-LAST:event_jMenuItem13addInmateClicked
+
+    private void jMenuItem12addCellClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12addCellClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+        for (JFrame frame : formList) {
+            if (frame instanceof AddCell) {
+                ((AddCell) frame).clear();
+                frame.setVisible(true);
+                break;
+
+            }
+        }
+    }//GEN-LAST:event_jMenuItem12addCellClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
@@ -266,13 +364,11 @@ public class EmployeeInfo extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem16;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
