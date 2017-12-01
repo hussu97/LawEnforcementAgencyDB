@@ -317,7 +317,7 @@ public class AddPrison extends javax.swing.JFrame {
                     }
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(AddEmployeeClerical.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(AddPrison.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(null,"Some of the fields are invalid","Error",JOptionPane.ERROR_MESSAGE);
             }
             try {

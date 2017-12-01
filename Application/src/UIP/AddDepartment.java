@@ -94,9 +94,9 @@ public class AddDepartment extends javax.swing.JFrame {
         viewEmp = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         viewStation = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem15 = new javax.swing.JMenuItem();
+        viewStationEmp = new javax.swing.JMenuItem();
+        addStation = new javax.swing.JMenuItem();
+        viewDept = new javax.swing.JMenuItem();
         addDept = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
@@ -181,24 +181,34 @@ public class AddDepartment extends javax.swing.JFrame {
 
         viewStation.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_MASK));
         viewStation.setText("View Station");
-        jMenu3.add(viewStation);
-
-        jMenuItem9.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem9.setText("View Station Employees");
-        jMenu3.add(jMenuItem9);
-
-        jMenuItem7.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem7.setText("Add Station");
-        jMenu3.add(jMenuItem7);
-
-        jMenuItem15.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem15.setText("View Department");
-        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
+        viewStation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem15viewDepartmentClicked(evt);
+                viewStationBtnClicked(evt);
             }
         });
-        jMenu3.add(jMenuItem15);
+        jMenu3.add(viewStation);
+
+        viewStationEmp.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
+        viewStationEmp.setText("View Station Employees");
+        viewStationEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewStationEmpBtnClicked(evt);
+            }
+        });
+        jMenu3.add(viewStationEmp);
+
+        addStation.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
+        addStation.setText("Add Station");
+        jMenu3.add(addStation);
+
+        viewDept.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_MASK));
+        viewDept.setText("View Department");
+        viewDept.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewDeptvClicked(evt);
+            }
+        });
+        jMenu3.add(viewDept);
 
         addDept.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_MASK));
         addDept.setText("Add Department");
@@ -354,7 +364,7 @@ public class AddDepartment extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_viewEmpBtnClicked
 
-    private void jMenuItem15viewDepartmentClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15viewDepartmentClicked
+    private void viewDeptvClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewDeptvClicked
         // TODO add your handling code here:
         this.setVisible(false);
         for (JFrame frame : formList) {
@@ -365,7 +375,7 @@ public class AddDepartment extends javax.swing.JFrame {
 
             }
         }
-    }//GEN-LAST:event_jMenuItem15viewDepartmentClicked
+    }//GEN-LAST:event_viewDeptvClicked
 
     private void addDeptBtnClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDeptBtnClicked
         // TODO add your handling code here:
@@ -467,10 +477,10 @@ public class AddDepartment extends javax.swing.JFrame {
             int ID=Department.getID();
             String sql = "Insert into Department values(";
             sql += ID;
-            sql += ",'"+NameField+"'";
+            sql += ",'"+NameField.getText().trim()+"'";
             sql +=","+FloorField.getSelectedItem().toString();
-            sql +=","+ContactField+")";
-            String sql2 ="Insert into CONSIST_OF values{";
+            sql +=",'0"+ContactField.getText().trim()+"')";
+            String sql2 ="Insert into CONSIST_OF values(";
             sql2 += "'"+StationField.getSelectedItem().toString()+"'";
             sql2 +=","+ID+")";
             try {
@@ -482,7 +492,7 @@ public class AddDepartment extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null,"Department Added");
                 this.setVisible(false);
                 for (JFrame frame : formList) {
-                    if (frame instanceof PrisonInfo) {
+                    if (frame instanceof StationInfo) {
                         frame.setVisible(true);
                         break;
                     }
@@ -525,6 +535,14 @@ public class AddDepartment extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_stationStateChanged
 
+    private void viewStationBtnClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewStationBtnClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_viewStationBtnClicked
+
+    private void viewStationEmpBtnClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewStationEmpBtnClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_viewStationEmpBtnClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField ContactField;
     private javax.swing.JComboBox<String> FloorField;
@@ -532,6 +550,7 @@ public class AddDepartment extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> StationField;
     private javax.swing.JMenuItem addDept;
     private javax.swing.JMenuItem addEmp;
+    private javax.swing.JMenuItem addStation;
     private javax.swing.JMenuItem exit;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -548,12 +567,11 @@ public class AddDepartment extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
-    private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JMenuItem viewDept;
     private javax.swing.JMenuItem viewEmp;
     private javax.swing.JMenuItem viewStation;
+    private javax.swing.JMenuItem viewStationEmp;
     // End of variables declaration//GEN-END:variables
 }
