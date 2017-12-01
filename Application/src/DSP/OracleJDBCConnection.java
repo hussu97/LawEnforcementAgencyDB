@@ -75,6 +75,11 @@ public class OracleJDBCConnection {
                         int ID=rs.getInt(1);
                         Cell.ID=ID;
                     }
+                    rs = statement.executeQuery("SELECT MAX(DEPT_ID) FROM DEPARTMENT");
+                    while(rs.next()){
+                        int ID=rs.getInt(1);
+                        Department.ID=ID;
+                    }
                 } catch (SQLException ex) {
                     Logger.getLogger(OracleJDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
                 }

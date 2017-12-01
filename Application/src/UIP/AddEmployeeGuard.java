@@ -292,21 +292,18 @@ public class AddEmployeeGuard extends javax.swing.JFrame {
             sql += ",'" + Employee.name +"'";
             sql += ",'" + Employee.contact +"'";
             sql += ",'"+ Employee.date + "'";
+            if(Employee.station.equals("N/A"))
+            sql += ",NULL";
+            else
+            sql+=",'"+Employee.station+"'";
             try {
                 st = conn.createStatement();
-                if(Employee.station.equals("N/A"))
-                    sql += ",NULL";
-                else{
-                    rs=st.executeQuery("SELECT DEPT_ID FROM DEPARTMENT WHERE DEPT_NAME ='"+Employee.station+"'");
-                    while(rs.next())
-                        sql += ",'"+ rs.getString(1)+"'";
-                }
                 if(Employee.prison.equals("N/A"))
                     sql += ",NULL)";
                 else{
                     rs=st.executeQuery("SELECT PRISON_ID FROM PRISON WHERE PRISON_LOCATION ='"+Employee.prison+"'");
                     while(rs.next())
-                        sql += ",'"+ rs.getString(1)+"')";
+                        sql += ","+ rs.getString(1)+")";
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(AddEmployeeCop.class.getName()).log(Level.SEVERE, null, ex);

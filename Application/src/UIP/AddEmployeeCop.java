@@ -357,7 +357,7 @@ public class AddEmployeeCop extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 Logger.getLogger(AddEmployeeCop.class.getName()).log(Level.SEVERE, null, ex);
             }
-            sql2 +=","+PosField.getText().trim();
+            sql2 +=",'"+PosField.getText().trim()+"'";
             if(ArrestField.getText().trim().equals(""))
                 sql2+=","+0;
             else

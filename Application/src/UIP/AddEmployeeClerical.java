@@ -351,7 +351,7 @@ public class AddEmployeeClerical extends javax.swing.JFrame {
                 st.executeUpdate(sql);
                 System.out.println(sql2);
                 st.executeUpdate(sql2);
-                JOptionPane.showMessageDialog(null,"Cop Added");
+                JOptionPane.showMessageDialog(null,"Clerical Added");
                 this.setVisible(false);
                 for (JFrame frame : formList) {
                     if(frame instanceof AddEmployee1){

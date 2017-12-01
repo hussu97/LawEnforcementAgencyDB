@@ -5,30 +5,67 @@
  */
 package UIP;
 
+import ALP.Department;
+import DSP.OracleJDBCConnection;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author H_Abb
  */
-public class StationInfo extends javax.swing.JFrame {
+public class AddDepartment extends javax.swing.JFrame {
 
     /**
-     * Creates new form StationInfo
+     * Creates new form AddDepartment
      */
     ArrayList<JFrame> formList;
-    public StationInfo(ArrayList<JFrame> formList) {
+    DefaultComboBoxModel station=new DefaultComboBoxModel();
+    DefaultComboBoxModel floor=new DefaultComboBoxModel();
+    public AddDepartment(ArrayList<JFrame> formList) {
         this.formList=formList;
         this.setResizable(false);
-        formList.add(this);
+        formList.add(this); 
         initComponents();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);       
+        this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);      
     }
 
+    public void clear(){
+        NameField.setText("");
+        ContactField.setText("");
+        setComboBox();
+        StationField.setSelectedIndex(0);
+        FloorField.setSelectedIndex(0);
+    }
+    
+    private void setComboBox(){
+       station.removeAllElements();
+       floor.removeAllElements();
+       station.addElement("N/A");
+       floor.addElement("N/A");
+       Connection conn=OracleJDBCConnection.connectDataBase();
+        Statement st=null;
+        try {
+            st=conn.createStatement();
+            ResultSet rs=st.executeQuery("SELECT STATION_LOCATION FROM STATION");
+            while(rs.next()){
+                station.addElement(rs.getString(1));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AddCell.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -39,12 +76,16 @@ public class StationInfo extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        StationField = new javax.swing.JComboBox<>();
+        FloorField = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
+        NameField = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        ContactField = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         exit = new javax.swing.JMenuItem();
@@ -68,50 +109,38 @@ public class StationInfo extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Station Information");
-        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Add Department");
 
-        jButton1.setText("View Station");
+        jLabel2.setText("Station*");
+
+        jLabel3.setText("Floor*");
+
+        jButton1.setText("Back");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewStationClicked(evt);
+                backClicked(evt);
             }
         });
 
-        jButton2.setText("View Station Employees");
+        jButton2.setText("Submit");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2viewEmployeeClicked(evt);
+                jButton2submitClicked(evt);
             }
         });
 
-        jButton4.setText("Back");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        StationField.setModel(station);
+        StationField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4backClicked(evt);
+                stationStateChanged(evt);
             }
         });
 
-        jButton3.setText("Add Station");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
+        FloorField.setModel(floor);
 
-        jButton5.setText("View Department");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewDepartmentClicked(evt);
-            }
-        });
+        jLabel4.setText("Name*");
 
-        jButton6.setText("Add Department");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addDeptBtnClicked(evt);
-            }
-        });
+        jLabel5.setText("Contact*       0");
 
         jMenu1.setText("File");
 
@@ -240,13 +269,27 @@ public class StationInfo extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(StationField, 0, 260, Short.MAX_VALUE)
+                            .addComponent(NameField)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(ContactField)
+                            .addComponent(FloorField, 0, 260, Short.MAX_VALUE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -255,68 +298,30 @@ public class StationInfo extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(NameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(StationField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(FloorField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton5)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(ContactField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton2viewEmployeeClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2viewEmployeeClicked
-        // TODO add your handling code here:
-        this.setVisible(false);
-        for (JFrame frame : formList) {
-            if (frame instanceof ViewEmployee) {
-                ((ViewEmployee) frame).clear();
-                frame.setVisible(true);
-                break;
-
-            }
-        }
-    }//GEN-LAST:event_jButton2viewEmployeeClicked
-
-    private void jButton4backClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4backClicked
-        // TODO add your handling code here:
-        this.setVisible(false);
-        for (JFrame frame : formList) {
-            if (frame instanceof MainMenu) {
-                frame.setVisible(true);
-                break;
-
-            }
-        }
-    }//GEN-LAST:event_jButton4backClicked
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void viewStationClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewStationClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_viewStationClicked
-
-    private void viewDepartmentClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewDepartmentClicked
-        // TODO add your handling code here:
-        this.setVisible(false);
-        for (JFrame frame : formList) {
-            if (frame instanceof ViewDepartment) {
-                ((ViewDepartment) frame).clear();
-                frame.setVisible(true);
-                break;
-
-            }
-        }
-    }//GEN-LAST:event_viewDepartmentClicked
 
     private void exitBtnClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnClicked
         // TODO add your handling code here:
@@ -438,17 +443,103 @@ public class StationInfo extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem12addCellClicked
 
+    private void backClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+        for (JFrame frame : formList) {
+            if (frame instanceof StationInfo) {
+                frame.setVisible(true);
+                break;
+
+            }
+        }
+    }//GEN-LAST:event_backClicked
+
+    private void jButton2submitClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2submitClicked
+        // TODO add your handling code here:
+        if(StationField.getSelectedItem().toString().equals("N/A")||FloorField.getSelectedItem().toString().equals("N/A")
+                ||NameField.getText().isEmpty()||ContactField.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Please enter valid values","Error",JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            Connection conn = OracleJDBCConnection.connectDataBase();
+            Statement st = null;
+            int ID=Department.getID();
+            String sql = "Insert into Department values(";
+            sql += ID;
+            sql += ",'"+NameField+"'";
+            sql +=","+FloorField.getSelectedItem().toString();
+            sql +=","+ContactField+")";
+            String sql2 ="Insert into CONSIST_OF values{";
+            sql2 += "'"+StationField.getSelectedItem().toString()+"'";
+            sql2 +=","+ID+")";
+            try {
+                st=conn.createStatement();
+                System.out.println(sql);
+                st.executeUpdate(sql);
+                System.out.println(sql2);
+                st.executeUpdate(sql2);
+                JOptionPane.showMessageDialog(null,"Department Added");
+                this.setVisible(false);
+                for (JFrame frame : formList) {
+                    if (frame instanceof PrisonInfo) {
+                        frame.setVisible(true);
+                        break;
+                    }
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(AddDepartment.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null,"Some of the fields are invalid","Error",JOptionPane.ERROR_MESSAGE);
+            }
+            try {
+                st.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(AddDepartment.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_jButton2submitClicked
+
+    private void stationStateChanged(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stationStateChanged
+        // TODO add your handling code here:
+        String station=null;
+        if(StationField.getSelectedItem()!=null)
+            station=StationField.getSelectedItem().toString();
+        System.out.println(station);
+        Connection conn=OracleJDBCConnection.connectDataBase();
+        floor.removeAllElements();
+        floor.addElement("N/A");
+        Statement st=null;
+        try {
+            st=conn.createStatement();
+            String sql="SELECT NO_FLOORS FROM STATION WHERE STATION_LOCATION ='"+station+"'";
+            ResultSet rs=st.executeQuery(sql);
+            int numFloors=0;
+            while(rs.next()){
+                numFloors=rs.getInt(1);
+            }
+            for(int i=0;i<numFloors;i++){
+                floor.addElement(i+1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AddDepartment.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_stationStateChanged
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField ContactField;
+    private javax.swing.JComboBox<String> FloorField;
+    private javax.swing.JTextField NameField;
+    private javax.swing.JComboBox<String> StationField;
     private javax.swing.JMenuItem addDept;
     private javax.swing.JMenuItem addEmp;
     private javax.swing.JMenuItem exit;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;

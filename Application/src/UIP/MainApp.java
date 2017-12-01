@@ -37,5 +37,8 @@ public class MainApp {
         java.awt.EventQueue.invokeLater(() -> {new ViewInmate(formList).setVisible(false);});
         java.awt.EventQueue.invokeLater(() -> {new AddInmate(formList).setVisible(false);});
         java.awt.EventQueue.invokeLater(() -> {new AddCell(formList).setVisible(false);});
+        java.awt.EventQueue.invokeLater(() -> {new ViewEmployee(formList).setVisible(false);});
+        java.awt.EventQueue.invokeLater(() -> {new ViewDepartment(formList).setVisible(false);});
+        java.awt.EventQueue.invokeLater(() -> {new AddDepartment(formList).setVisible(false);});
     }
 }

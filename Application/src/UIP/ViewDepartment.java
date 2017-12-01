@@ -22,13 +22,13 @@ import javax.swing.JOptionPane;
  *
  * @author H_Abb
  */
-public class ViewEmployee extends javax.swing.JFrame {
+public class ViewDepartment extends javax.swing.JFrame {
 
     /**
-     * Creates new form ViewEmployee
+     * Creates new form ViewDepartment
      */
     ArrayList<JFrame> formList;
-    public ViewEmployee(ArrayList<JFrame> formList) {
+    public ViewDepartment(ArrayList<JFrame> formList) {
         this.formList=formList;
         this.setResizable(false);
         formList.add(this); 
@@ -36,17 +36,15 @@ public class ViewEmployee extends javax.swing.JFrame {
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);      
     }
-
+    
     public void clear(){
         NameField.setText("");
         IDField.setText("");
-        SSNField.setText("");
-        HireField.setText("");
-        EmployeeTypeField.setText("");
-        SalaryField.setText("");
+        StationField.setText("");
+        FloorField.setText("");
         ContactField.setText("");
-        SalaryJLabel.setText("Salary");
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -58,7 +56,7 @@ public class ViewEmployee extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        EmployeeField = new javax.swing.JTextField();
+        DepartmentField = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -67,23 +65,19 @@ public class ViewEmployee extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
         IDField = new javax.swing.JLabel();
         NameField = new javax.swing.JLabel();
-        SSNField = new javax.swing.JLabel();
+        StationField = new javax.swing.JLabel();
+        FloorField = new javax.swing.JLabel();
         ContactField = new javax.swing.JLabel();
-        HireField = new javax.swing.JLabel();
-        EmployeeTypeField = new javax.swing.JLabel();
-        SalaryJLabel = new javax.swing.JLabel();
-        SalaryField = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem6 = new javax.swing.JMenuItem();
+        exit = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        addEmp = new javax.swing.JMenuItem();
+        viewEmp = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        jMenuItem8 = new javax.swing.JMenuItem();
+        viewStation = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem15 = new javax.swing.JMenuItem();
@@ -99,9 +93,9 @@ public class ViewEmployee extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("View Employee");
+        jLabel1.setText("View Department");
 
-        jLabel2.setText("Enter Employee Name/ID");
+        jLabel2.setText("Enter Department Name/ID");
 
         jButton1.setText("Generate");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -117,10 +111,10 @@ public class ViewEmployee extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("Remove Employee");
+        jButton3.setText("Remove Department");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                removeEmployeeClicked(evt);
+                removeDeptClicked(evt);
             }
         });
 
@@ -131,60 +125,54 @@ public class ViewEmployee extends javax.swing.JFrame {
         jLabel12.setText("Name");
 
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel13.setText("SSN");
+        jLabel13.setText("Station");
 
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel14.setText("Contact");
+        jLabel14.setText("Floor No");
 
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel15.setText("Hire Date");
-
-        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel16.setText("Employee Type");
-
-        SalaryJLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        SalaryJLabel.setText("Salary");
+        jLabel15.setText("Contact");
 
         jMenu1.setText("File");
 
-        jMenuItem6.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem6.setText("Exit");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+        exit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
+        exit.setText("Exit");
+        exit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6exitClicked(evt);
+                exitBtnClicked(evt);
             }
         });
-        jMenu1.add(jMenuItem6);
+        jMenu1.add(exit);
 
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Employee");
 
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem1.setText("Add Employee");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        addEmp.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
+        addEmp.setText("Add Employee");
+        addEmp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1addEmpClicked(evt);
+                addEmpBtnClicked(evt);
             }
         });
-        jMenu2.add(jMenuItem1);
+        jMenu2.add(addEmp);
 
-        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem3.setText("View Employee");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        viewEmp.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
+        viewEmp.setText("View Employee");
+        viewEmp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3viewEmployeeClicked(evt);
+                viewEmpBtnClicked(evt);
             }
         });
-        jMenu2.add(jMenuItem3);
+        jMenu2.add(viewEmp);
 
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Station");
 
-        jMenuItem8.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem8.setText("View Station");
-        jMenu3.add(jMenuItem8);
+        viewStation.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_MASK));
+        viewStation.setText("View Station");
+        jMenu3.add(viewStation);
 
         jMenuItem9.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem9.setText("View Station Employees");
@@ -196,10 +184,20 @@ public class ViewEmployee extends javax.swing.JFrame {
 
         jMenuItem15.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem15.setText("View Department");
+        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewDepartmentClicked(evt);
+            }
+        });
         jMenu3.add(jMenuItem15);
 
         jMenuItem14.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem14.setText("Add Department");
+        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addDeptClicked(evt);
+            }
+        });
         jMenu3.add(jMenuItem14);
 
         jMenuBar1.add(jMenu3);
@@ -264,22 +262,18 @@ public class ViewEmployee extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(SalaryJLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(43, 43, 43)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(IDField)
                             .addComponent(NameField)
-                            .addComponent(SSNField)
-                            .addComponent(ContactField)
-                            .addComponent(HireField)
-                            .addComponent(EmployeeTypeField)
-                            .addComponent(SalaryField))
+                            .addComponent(StationField)
+                            .addComponent(FloorField)
+                            .addComponent(ContactField))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -290,11 +284,11 @@ public class ViewEmployee extends javax.swing.JFrame {
                                 .addComponent(jButton1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButton3)
-                                .addGap(0, 88, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(18, 18, 18)
-                                .addComponent(EmployeeField)))
+                                .addComponent(DepartmentField)))
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -305,7 +299,7 @@ public class ViewEmployee extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(EmployeeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(DepartmentField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
@@ -322,35 +316,27 @@ public class ViewEmployee extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(SSNField))
+                    .addComponent(StationField))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
-                    .addComponent(ContactField))
+                    .addComponent(FloorField))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
-                    .addComponent(HireField))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel16)
-                    .addComponent(EmployeeTypeField))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SalaryJLabel)
-                    .addComponent(SalaryField))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(ContactField))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem6exitClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6exitClicked
+    private void exitBtnClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnClicked
         // TODO add your handling code here:
         System.exit(0);
-    }//GEN-LAST:event_jMenuItem6exitClicked
+    }//GEN-LAST:event_exitBtnClicked
 
-    private void jMenuItem1addEmpClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1addEmpClicked
+    private void addEmpBtnClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addEmpBtnClicked
         // TODO add your handling code here:
         this.setVisible(false);
         for (JFrame frame : formList) {
@@ -361,9 +347,9 @@ public class ViewEmployee extends javax.swing.JFrame {
 
             }
         }
-    }//GEN-LAST:event_jMenuItem1addEmpClicked
+    }//GEN-LAST:event_addEmpBtnClicked
 
-    private void jMenuItem3viewEmployeeClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3viewEmployeeClicked
+    private void viewEmpBtnClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewEmpBtnClicked
         // TODO add your handling code here:
         this.setVisible(false);
         for (JFrame frame : formList) {
@@ -374,7 +360,20 @@ public class ViewEmployee extends javax.swing.JFrame {
 
             }
         }
-    }//GEN-LAST:event_jMenuItem3viewEmployeeClicked
+    }//GEN-LAST:event_viewEmpBtnClicked
+
+    private void viewDepartmentClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewDepartmentClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+        for (JFrame frame : formList) {
+            if (frame instanceof ViewDepartment) {
+                ((ViewDepartment) frame).clear();
+                frame.setVisible(true);
+                break;
+
+            }
+        }
+    }//GEN-LAST:event_viewDepartmentClicked
 
     private void jMenuItem4viewPrisonClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4viewPrisonClicked
         // TODO add your handling code here:
@@ -443,68 +442,41 @@ public class ViewEmployee extends javax.swing.JFrame {
         // TODO add your handling code here:
         IDField.setText("");
         NameField.setText("");
-        SSNField.setText("");
+        StationField.setText("");
+        FloorField.setText("");
         ContactField.setText("");
-        HireField.setText("");
-        EmployeeTypeField.setText("");
-        SalaryField.setText("");
-        SalaryJLabel.setText("Salary");
-        if(EmployeeField.getText().trim().equals("")){
+        if(DepartmentField.getText().trim().equals("")){
         }
         else{
             Connection conn=OracleJDBCConnection.connectDataBase();
             String empID=null;
             try {
                 Statement st=conn.createStatement();
-                String sql="SELECT EMP_ID,EMP_NAME,SSN,CONTACT,HIRE_DATE FROM EMPLOYEE WHERE ";
-                if(EmployeeField.getText().trim().startsWith("1")||
-                    EmployeeField.getText().trim().startsWith("2")||
-                    EmployeeField.getText().trim().startsWith("3")||
-                    EmployeeField.getText().trim().startsWith("4")||
-                    EmployeeField.getText().trim().startsWith("5")||
-                    EmployeeField.getText().trim().startsWith("6")||
-                    EmployeeField.getText().trim().startsWith("7")||
-                    EmployeeField.getText().trim().startsWith("8")||
-                    EmployeeField.getText().trim().startsWith("9")){
-                    sql+="EMP_ID = "+EmployeeField.getText().trim();
+                String sql="SELECT DEPT_ID,DEPT_NAME,STATION_LOCATION,FLOOR_NO,CONTACT_NO FROM STATION natural join CONSIST_OF natural join DEPARTMENT WHERE ";
+                if(DepartmentField.getText().trim().startsWith("1")||
+                    DepartmentField.getText().trim().startsWith("2")||
+                    DepartmentField.getText().trim().startsWith("3")||
+                    DepartmentField.getText().trim().startsWith("4")||
+                    DepartmentField.getText().trim().startsWith("5")||
+                    DepartmentField.getText().trim().startsWith("6")||
+                    DepartmentField.getText().trim().startsWith("7")||
+                    DepartmentField.getText().trim().startsWith("8")||
+                    DepartmentField.getText().trim().startsWith("9")){
+                    sql+="DEPT_ID = "+DepartmentField.getText().trim();
                 }
                 else
-                sql+="LOWER(EMP_NAME) LIKE LOWER('%"+EmployeeField.getText().trim()+"%')";
+                sql+="LOWER(DEPT_NAME) LIKE LOWER('%"+DepartmentField.getText().trim()+"%')";
                 ResultSet rs=st.executeQuery(sql);
                 while(rs.next()){
                     empID=rs.getString(1);
                     IDField.setText(empID);
                     NameField.setText(rs.getString(2));
-                    SSNField.setText(rs.getString(3));
-                    ContactField.setText(rs.getString(4));
-                    HireField.setText(rs.getString(5).replaceFirst(" 00:00:00.0", ""));
-                }
-                System.out.println(empID);
-                if(empID !=null){
-                    String sql2="SELECT SALARY FROM COP WHERE EMP_ID= "+empID;
-                    rs=st.executeQuery(sql2);
-                    while(rs.next()){
-                        EmployeeTypeField.setText("Cop");
-                        SalaryField.setText(rs.getString(1));
-                    }
-                    sql2="SELECT SALARY FROM CLERICAL WHERE EMP_ID= "+empID;
-                    rs=st.executeQuery(sql2);
-                    while(rs.next()){
-                        EmployeeTypeField.setText("Clerical");
-                        SalaryField.setText(rs.getString(1));
-                    }
-                    sql2="SELECT SHIFT*HOURLY_RATE FROM GUARD WHERE EMP_ID= "+empID;
-                    rs=st.executeQuery(sql2);
-                    while(rs.next()){
-                        SalaryJLabel.setText("Wage");
-                        EmployeeTypeField.setText("Guard");
-                        Integer x=Integer.parseInt(rs.getString(1))*30;
-                        System.out.println(x);
-                        SalaryField.setText(x.toString());
-                    }
+                    StationField.setText(rs.getString(3));
+                    FloorField.setText(rs.getString(4));
+                    ContactField.setText(rs.getString(5));
                 }
                 if(IDField.getText().trim().equals(""))
-                    JOptionPane.showMessageDialog(null,"Employee not found");
+                JOptionPane.showMessageDialog(null,"Department not found");
             } catch (SQLException ex) {
                 Logger.getLogger(AddEmployee1.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -515,7 +487,7 @@ public class ViewEmployee extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.setVisible(false);
         for (JFrame frame : formList) {
-            if (frame instanceof EmployeeInfo) {
+            if (frame instanceof StationInfo) {
                 frame.setVisible(true);
                 break;
 
@@ -523,22 +495,35 @@ public class ViewEmployee extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton2backClicked
 
-    private void removeEmployeeClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeEmployeeClicked
+    private void removeDeptClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeDeptClicked
         // TODO add your handling code here:
         int answer;
         if(!IDField.getText().trim().equals(""))
-            answer=JOptionPane.showConfirmDialog(null,"Are you sure you want to remove employee "+NameField.getText());
-    }//GEN-LAST:event_removeEmployeeClicked
+            answer=JOptionPane.showConfirmDialog(null,"Are you sure you want to remove department "+NameField.getText());
+    }//GEN-LAST:event_removeDeptClicked
+
+    private void addDeptClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDeptClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+        for (JFrame frame : formList) {
+            if (frame instanceof AddDepartment) {
+                ((AddDepartment) frame).clear();
+                frame.setVisible(true);
+                break;
+
+            }
+        }
+    }//GEN-LAST:event_addDeptClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ContactField;
-    private javax.swing.JTextField EmployeeField;
-    private javax.swing.JLabel EmployeeTypeField;
-    private javax.swing.JLabel HireField;
+    private javax.swing.JTextField DepartmentField;
+    private javax.swing.JLabel FloorField;
     private javax.swing.JLabel IDField;
     private javax.swing.JLabel NameField;
-    private javax.swing.JLabel SSNField;
-    private javax.swing.JLabel SalaryField;
-    private javax.swing.JLabel SalaryJLabel;
+    private javax.swing.JLabel StationField;
+    private javax.swing.JMenuItem addEmp;
+    private javax.swing.JMenuItem exit;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -548,25 +533,22 @@ public class ViewEmployee extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JMenuItem viewEmp;
+    private javax.swing.JMenuItem viewStation;
     // End of variables declaration//GEN-END:variables
 }
