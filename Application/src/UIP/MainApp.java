@@ -20,36 +20,29 @@ public class MainApp {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        //Load the requied datanses proceesed 
-        //at application level
 
         final ArrayList<JFrame> formList = new ArrayList<JFrame>();
-    
-        //Login form opens up first
         Runnable r = new Runnable() {
             public void run() {
                 new MainMenu(formList).setVisible(true);        
             }
         };
         java.awt.EventQueue.invokeLater(r);
-
-        //Load main menu form as a thread
-         //Not shown to the user
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new EmployeeInfo(formList).setVisible(false);
             }
         });
-
-         //Load cardetals form as a thread
-         //Not shown to the user
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new StationInfo(formList).setVisible(false);
             }
         });
-        //Load AddUserdetails form as a thread
-         //Not shown to the user
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new PrisonInfo(formList).setVisible(false);
+            }
+        });
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new AddEmployee1(formList).setVisible(false);
@@ -68,6 +61,21 @@ public class MainApp {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new AddEmployeeClerical(formList).setVisible(false);
+            }
+        });
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new ViewPrison(formList).setVisible(false);
+            }
+        });
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new AddPrison(formList).setVisible(false);
+            }
+        });
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new ViewInmate(formList).setVisible(false);
             }
         });
 

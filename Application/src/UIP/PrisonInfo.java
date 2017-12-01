@@ -5,31 +5,22 @@
  */
 package UIP;
 
-import ALP.Employee;
-import DSP.OracleJDBCConnection;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 /**
  *
  * @author H_Abb
  */
-public class AddEmployeeGuard extends javax.swing.JFrame {
+public class PrisonInfo extends javax.swing.JFrame {
 
     /**
-     * Creates new form AddEmployeeGuard
+     * Creates new form PrisonInfo
      */
     ArrayList<JFrame> formList;
-    public AddEmployeeGuard(ArrayList<JFrame> formList) {
+    public PrisonInfo(ArrayList<JFrame> formList) {
         this.formList=formList;
         this.setResizable(false);
         formList.add(this);
@@ -49,15 +40,12 @@ public class AddEmployeeGuard extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        HourField = new javax.swing.JTextField();
-        RankField = new javax.swing.JTextField();
-        RateField = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
@@ -76,36 +64,46 @@ public class AddEmployeeGuard extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem13 = new javax.swing.JMenuItem();
-        jMenuItem11 = new javax.swing.JMenuItem();
         jMenuItem12 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Add Employee");
+        jLabel1.setText("Prison Information");
+        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        jLabel2.setText("2/2");
-
-        jLabel3.setText("Shift Hours*");
-
-        jLabel4.setText("Rank (1-7)*");
-
-        jLabel5.setText("Hourly Rate*");
-
-        jButton1.setText("Submit");
+        jButton1.setText("View Prison");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                submitClicked(evt);
+                viewPrisonClicked(evt);
             }
         });
 
-        jButton2.setText("Back");
+        jButton2.setText("View Inmate");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backClicked(evt);
+                viewInmateClicked(evt);
             }
         });
+
+        jButton3.setText("Add Prison");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addPrisonClicked(evt);
+            }
+        });
+
+        jButton4.setText("Back");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4backClicked(evt);
+            }
+        });
+
+        jButton5.setText("Add Inmate");
+
+        jButton6.setText("Add Cell");
 
         jMenu1.setText("File");
 
@@ -169,23 +167,34 @@ public class AddEmployeeGuard extends javax.swing.JFrame {
 
         jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem4.setText("View Prison");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4viewPrisonClicked(evt);
+            }
+        });
         jMenu4.add(jMenuItem4);
 
         jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_J, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem5.setText("Add Prison");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5addPrisonClicked(evt);
+            }
+        });
         jMenu4.add(jMenuItem5);
 
         jMenuItem10.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_K, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem10.setText("View Inmates");
+        jMenuItem10.setText("View Inmate");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewInmateClicked(evt);
+            }
+        });
         jMenu4.add(jMenuItem10);
 
         jMenuItem13.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem13.setText("Add Inmate");
         jMenu4.add(jMenuItem13);
-
-        jMenuItem11.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem11.setText("View Cells");
-        jMenu4.add(jMenuItem11);
 
         jMenuItem12.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem12.setText("Add Cell");
@@ -202,67 +211,81 @@ public class AddEmployeeGuard extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(HourField)
-                            .addComponent(RankField)
-                            .addComponent(RateField))))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(214, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(43, 43, 43)
-                .addComponent(jButton1)
-                .addGap(171, 171, 171))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1))
+                .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(HourField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(RankField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jButton3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(RateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(116, 116, 116)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap(202, Short.MAX_VALUE))
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton4)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void addPrisonClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPrisonClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+        for (JFrame frame : formList) {
+            if (frame instanceof AddPrison) {
+                ((AddPrison) frame).clear();
+                frame.setVisible(true);
+                break;
+
+            }
+        }
+    }//GEN-LAST:event_addPrisonClicked
+
+    private void jButton4backClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4backClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+        for (JFrame frame : formList) {
+            if (frame instanceof MainMenu) {
+                frame.setVisible(true);
+                break;
+
+            }
+        }
+    }//GEN-LAST:event_jButton4backClicked
+
+    private void viewPrisonClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewPrisonClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+        for (JFrame frame : formList) {
+            if (frame instanceof ViewPrison) {
+                ((ViewPrison) frame).clear();
+                frame.setVisible(true);
+                break;
+
+            }
+        }
+    }//GEN-LAST:event_viewPrisonClicked
 
     private void jMenuItem6exitClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6exitClicked
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_jMenuItem6exitClicked
 
-    public void clear(){
-        RankField.setText("");
-        HourField.setText("");
-        RateField.setText("");
-    }
     private void jMenuItem1addEmpClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1addEmpClicked
         // TODO add your handling code here:
         this.setVisible(false);
@@ -276,103 +299,52 @@ public class AddEmployeeGuard extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem1addEmpClicked
 
-    private void submitClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitClicked
-        // TODO add your handling code here:
-        if(HourField.getText().equals("")||RankField.getText().equals("")||RateField.getText().equals("")){
-            JOptionPane.showMessageDialog(null,"Some of the fields are invalid","Error",JOptionPane.ERROR_MESSAGE);
-        }
-        else{
-        Connection conn = OracleJDBCConnection.connectDataBase();
-        Statement st = null;
-            ResultSet rs=null;
-            int ID=Employee.getID();
-            String sql = "Insert into Employee values(";
-            sql += ID;
-            sql += "," + Employee.SSN +""  ;
-            sql += ",'" + Employee.name +"'";
-            sql += ",'" + Employee.contact +"'";
-            sql += ",'"+ Employee.date + "'";
-            try {
-                st = conn.createStatement();
-                if(Employee.station.equals("N/A"))
-                    sql += ",NULL";
-                else{
-                    rs=st.executeQuery("SELECT DEPT_ID FROM DEPARTMENT WHERE DEPT_NAME ='"+Employee.station+"'");
-                    while(rs.next())
-                        sql += ",'"+ rs.getString(1)+"'";
-                }
-                if(Employee.prison.equals("N/A"))
-                    sql += ",NULL)";
-                else{
-                    rs=st.executeQuery("SELECT PRISON_ID FROM PRISON WHERE PRISON_LOCATION ='"+Employee.prison+"'");
-                    while(rs.next())
-                        sql += ",'"+ rs.getString(1)+"')";
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(AddEmployeeCop.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            System.out.println(sql);
-        
-        String sql2 ="Insert into Guard values(";
-        sql2 +=ID;
-        sql2 +=","+HourField.getText().trim();
-        sql2 +=","+RankField.getText().trim();
-        sql2+=","+RateField.getText().trim()+")";
-            System.out.println(sql2);
-            try {
-                st = conn.createStatement();
-                
-            } catch (SQLException ex) {
-                Logger.getLogger(OracleJDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            try {
-                st.executeUpdate(sql);
-                st.executeUpdate(sql2);
-                JOptionPane.showMessageDialog(null,"Guard Added");
-                    this.setVisible(false);
-                    for (JFrame frame : formList) {
-                        if(frame instanceof AddEmployee1){
-                            ((AddEmployee1) frame).clear();
-                        }
-                        if (frame instanceof EmployeeInfo) {
-                            frame.setVisible(true);
-                            break;
-                        }
-                    }
-            } catch (SQLException ex) {
-                Logger.getLogger(AddEmployeeGuard.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(null,"Some of the fields are invalid","Error",JOptionPane.ERROR_MESSAGE);
-            }
-            try {
-                st.close();
-            } catch (SQLException ex) {
-                Logger.getLogger(AddEmployeeGuard.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }//GEN-LAST:event_submitClicked
-
-    private void backClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backClicked
+    private void jMenuItem4viewPrisonClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4viewPrisonClicked
         // TODO add your handling code here:
         this.setVisible(false);
-                    for (JFrame frame : formList) {
-                        if (frame instanceof AddEmployee1) {
-                            frame.setVisible(true);
-                            break;
-                        }
-                    }
-    }//GEN-LAST:event_backClicked
+        for (JFrame frame : formList) {
+            if (frame instanceof ViewPrison) {
+                ((ViewPrison) frame).clear();
+                frame.setVisible(true);
+                break;
+
+            }
+        }
+    }//GEN-LAST:event_jMenuItem4viewPrisonClicked
+
+    private void jMenuItem5addPrisonClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5addPrisonClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+        for (JFrame frame : formList) {
+            if (frame instanceof AddPrison) {
+                ((AddPrison) frame).clear();
+                frame.setVisible(true);
+                break;
+
+            }
+        }
+    }//GEN-LAST:event_jMenuItem5addPrisonClicked
+
+    private void viewInmateClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewInmateClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+        for (JFrame frame : formList) {
+            if (frame instanceof ViewInmate) {
+                ((ViewInmate) frame).clear();
+                frame.setVisible(true);
+                break;
+            }
+        }
+    }//GEN-LAST:event_viewInmateClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField HourField;
-    private javax.swing.JTextField RankField;
-    private javax.swing.JTextField RateField;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -380,7 +352,6 @@ public class AddEmployeeGuard extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;

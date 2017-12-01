@@ -142,7 +142,7 @@ public class AddEmployee1 extends javax.swing.JFrame {
 
         jLabel6.setText("Hire Date* (DD-MMM-YY)");
 
-        jLabel7.setText("Station (If Cop)");
+        jLabel7.setText("Station");
 
         jLabel8.setText("Prison");
 

@@ -62,6 +62,11 @@ public class MainMenu extends JFrame {
         });
 
         jButton3.setText("Prison Information");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                prisonInfoClicked(evt);
+            }
+        });
 
         jButton4.setText("Exit");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -139,6 +144,19 @@ public class MainMenu extends JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_exitClicked
+
+    private void prisonInfoClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prisonInfoClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+                for (JFrame frame : formList) {
+                    if (frame instanceof PrisonInfo) {
+                        frame.setVisible(true);
+                        break;
+
+                    }
+                }
+        
+    }//GEN-LAST:event_prisonInfoClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

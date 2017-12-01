@@ -35,7 +35,6 @@ public class AddEmployeeClerical extends javax.swing.JFrame {
         this.formList=formList;
         this.setResizable(false);
         formList.add(this);
-        setComboBox();
         initComponents();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
@@ -364,13 +363,13 @@ public class AddEmployeeClerical extends javax.swing.JFrame {
                     }
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(AddUserForm.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(AddEmployeeClerical.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(null,"Some of the fields are invalid","Error",JOptionPane.ERROR_MESSAGE);
             }
             try {
                 st.close();
             } catch (SQLException ex) {
-                Logger.getLogger(AddUserForm.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(AddEmployeeClerical.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_jButton1submitClicked
