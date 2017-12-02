@@ -45,12 +45,16 @@ public class AddEmployeeClerical extends javax.swing.JFrame {
         jobType.removeAllElements();
         Connection conn=OracleJDBCConnection.connectDataBase();
         Statement st=null;
+        
         try {
             st=conn.createStatement();
             ResultSet rs=st.executeQuery("SELECT JOB_TYPE FROM CLERICAL");
+            System.out.println("TEst");
             while(rs.next()){
                 jobType.addElement(rs.getString(1));
+                System.out.println("Found");
             }
+            
         } catch (SQLException ex) {
             Logger.getLogger(AddEmployee1.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -58,7 +62,7 @@ public class AddEmployeeClerical extends javax.swing.JFrame {
     }
     
     public void clear(){
-        
+        setComboBox();
     }
     /**
      * This method is called from within the constructor to initialize the form.

@@ -456,9 +456,24 @@ public class ViewEmployee extends javax.swing.JFrame {
 
     private void removeEmployeeClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeEmployeeClicked
         // TODO add your handling code here:
-        int answer;
+         int answer = 1;
         if(!IDField.getText().trim().equals(""))
             answer=JOptionPane.showConfirmDialog(null,"Are you sure you want to remove employee "+NameField.getText());
+        if(answer == 0)
+        {
+            try {
+                Connection conn = OracleJDBCConnection.connectDataBase();
+                Statement st = conn.createStatement();
+                String emp_ID = IDField.getText();
+                String SQL = "Delete from Employee where EMP_ID = " + emp_ID ;
+                st.executeUpdate(SQL);
+                JOptionPane.showMessageDialog(null, "Employee removed! ","Remove employee" , JOptionPane.INFORMATION_MESSAGE);
+                clear();
+            } catch (SQLException ex) {
+                Logger.getLogger(ViewEmployee.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }
     }//GEN-LAST:event_removeEmployeeClicked
 
     private void exitBtnClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnClicked
