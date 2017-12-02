@@ -32,6 +32,7 @@ public class MainApp {
         java.awt.EventQueue.invokeLater(() -> {new AddEmployeeGuard(formList).setVisible(false);});
         java.awt.EventQueue.invokeLater(() -> {new AddEmployeeCop(formList).setVisible(false);});
         java.awt.EventQueue.invokeLater(() -> {new AddEmployeeClerical(formList).setVisible(false);});
+         java.awt.EventQueue.invokeLater(() -> {new EditEmployee(formList).setVisible(false);});
         java.awt.EventQueue.invokeLater(() -> {new ViewStation(formList).setVisible(false);});
         java.awt.EventQueue.invokeLater(() -> {new ViewPrison(formList).setVisible(false);});
         java.awt.EventQueue.invokeLater(() -> {new AddPrison(formList).setVisible(false);});
@@ -42,6 +43,7 @@ public class MainApp {
         java.awt.EventQueue.invokeLater(() -> {new ViewDepartment(formList).setVisible(false);});
         java.awt.EventQueue.invokeLater(() -> {new AddDepartment(formList).setVisible(false);});
         java.awt.EventQueue.invokeLater(() -> {new AddStation(formList).setVisible(false);});
+       
         java.awt.EventQueue.invokeLater(() -> {new ViewStationEmp(formList).setVisible(false);});
         
     }
