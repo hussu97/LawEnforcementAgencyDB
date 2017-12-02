@@ -44,12 +44,14 @@ public class EmployeeInfo extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        EditEmployeeButton = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         exit = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         addEmp = new javax.swing.JMenuItem();
         viewEmp = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         viewStation = new javax.swing.JMenuItem();
         viewStationEmp = new javax.swing.JMenuItem();
@@ -93,6 +95,13 @@ public class EmployeeInfo extends javax.swing.JFrame {
             }
         });
 
+        EditEmployeeButton.setText("Edit Employee");
+        EditEmployeeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditEmployeeButtonbackClicked(evt);
+            }
+        });
+
         jMenu1.setText("File");
 
         exit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
@@ -125,6 +134,15 @@ public class EmployeeInfo extends javax.swing.JFrame {
             }
         });
         jMenu2.add(viewEmp);
+
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem1.setText("Edit Employee");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem1);
 
         jMenuBar1.add(jMenu2);
 
@@ -238,7 +256,8 @@ public class EmployeeInfo extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(EditEmployeeButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -251,8 +270,10 @@ public class EmployeeInfo extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(EditEmployeeButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton4)
-                .addContainerGap(224, Short.MAX_VALUE))
+                .addContainerGap(186, Short.MAX_VALUE))
         );
 
         pack();
@@ -429,7 +450,26 @@ public class EmployeeInfo extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_addCellBtnClicked
 
+    private void EditEmployeeButtonbackClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditEmployeeButtonbackClicked
+        this.setVisible(false);
+
+        for(JFrame frame : formList)
+
+        {
+    if (frame instanceof EditEmployee)
+    {
+        ((EditEmployee) frame).clear();
+        frame.setVisible(true);
+        break;
+    }}
+    }//GEN-LAST:event_EditEmployeeButtonbackClicked
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        EditEmployeeButtonbackClicked(evt);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton EditEmployeeButton;
     private javax.swing.JMenuItem addCell;
     private javax.swing.JMenuItem addDept;
     private javax.swing.JMenuItem addEmp;
@@ -446,6 +486,7 @@ public class EmployeeInfo extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem viewDept;
     private javax.swing.JMenuItem viewEmp;
