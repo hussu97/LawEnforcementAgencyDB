@@ -145,22 +145,47 @@ public class EmployeeInfo extends javax.swing.JFrame {
 
         viewStation.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_MASK));
         viewStation.setText("View Station");
+        viewStation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewStationActionPerformed(evt);
+            }
+        });
         StationMenu.add(viewStation);
 
         viewStationEmp.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
         viewStationEmp.setText("View Station Employees");
+        viewStationEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewStationEmpActionPerformed(evt);
+            }
+        });
         StationMenu.add(viewStationEmp);
 
         addStation.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
         addStation.setText("Add Station");
+        addStation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addStationActionPerformed(evt);
+            }
+        });
         StationMenu.add(addStation);
 
         viewDept.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_MASK));
         viewDept.setText("View Department");
+        viewDept.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewDeptActionPerformed(evt);
+            }
+        });
         StationMenu.add(viewDept);
 
         addDept.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_MASK));
         addDept.setText("Add Department");
+        addDept.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addDeptActionPerformed(evt);
+            }
+        });
         StationMenu.add(addDept);
 
         jMenuBar1.add(StationMenu);
@@ -169,22 +194,47 @@ public class EmployeeInfo extends javax.swing.JFrame {
 
         viewPrison.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_MASK));
         viewPrison.setText("View Prison");
+        viewPrison.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewPrisonActionPerformed(evt);
+            }
+        });
         PrisonMenu.add(viewPrison);
 
         addPrison.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_J, java.awt.event.InputEvent.CTRL_MASK));
         addPrison.setText("Add Prison");
+        addPrison.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addPrisonActionPerformed(evt);
+            }
+        });
         PrisonMenu.add(addPrison);
 
         viewInmate.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_K, java.awt.event.InputEvent.CTRL_MASK));
         viewInmate.setText("View Inmate");
+        viewInmate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewInmateActionPerformed(evt);
+            }
+        });
         PrisonMenu.add(viewInmate);
 
         addInmate.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
         addInmate.setText("Add Inmate");
+        addInmate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addInmateActionPerformed(evt);
+            }
+        });
         PrisonMenu.add(addInmate);
 
         addCell.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
         addCell.setText("Add Cell");
+        addCell.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addCellActionPerformed(evt);
+            }
+        });
         PrisonMenu.add(addCell);
 
         jMenuBar1.add(PrisonMenu);
@@ -316,6 +366,148 @@ System.exit(0);
             }
         }
     }//GEN-LAST:event_viewEmpActionPerformed
+
+    private void viewStationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewStationActionPerformed
+    
+     // TODO add your handling code here:
+     
+     this.setVisible(false);
+        for(JFrame frame : formList)
+        {
+            if(frame instanceof ViewStation)
+            {
+                ((ViewStation) frame).clear();
+                frame.setVisible(true);
+                break;
+            }
+        }
+    }//GEN-LAST:event_viewStationActionPerformed
+
+    private void viewStationEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewStationEmpActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        for(JFrame frame : formList)
+        {
+            if(frame instanceof ViewStationEmp)
+            {
+                ((ViewStationEmp) frame).clear();
+                frame.setVisible(true);
+                break;
+            }
+        }
+    }//GEN-LAST:event_viewStationEmpActionPerformed
+
+    private void addStationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addStationActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        for(JFrame frame : formList)
+        {
+            if(frame instanceof AddStation)
+            {
+                ((AddStation) frame).clear();
+                frame.setVisible(true);
+                break;
+            }
+        }
+    }//GEN-LAST:event_addStationActionPerformed
+
+    private void viewDeptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewDeptActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        for(JFrame frame : formList)
+        {
+            if(frame instanceof ViewDepartment)
+            {
+                ((ViewDepartment) frame).clear();
+                frame.setVisible(true);
+                break;
+            }
+        }
+    }//GEN-LAST:event_viewDeptActionPerformed
+
+    private void addDeptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDeptActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        for(JFrame frame : formList)
+        {
+            if(frame instanceof AddDepartment)
+            {
+                ((AddDepartment) frame).clear();
+                frame.setVisible(true);
+                break;
+            }
+        }
+    }//GEN-LAST:event_addDeptActionPerformed
+
+    private void viewPrisonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewPrisonActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        for(JFrame frame : formList)
+        {
+            if(frame instanceof ViewPrison)
+            {
+                ((ViewPrison) frame).clear();
+                frame.setVisible(true);
+                break;
+            }
+        }
+    }//GEN-LAST:event_viewPrisonActionPerformed
+
+    private void addPrisonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPrisonActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        for(JFrame frame : formList)
+        {
+            if(frame instanceof AddPrison)
+            {
+                ((AddPrison) frame).clear();
+                frame.setVisible(true);
+                break;
+            }
+        }
+    }//GEN-LAST:event_addPrisonActionPerformed
+
+    private void viewInmateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewInmateActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        for(JFrame frame : formList)
+        {
+            if(frame instanceof ViewInmate)
+            {
+                ((ViewInmate) frame).clear();
+                frame.setVisible(true);
+                break;
+            }
+        }
+    }//GEN-LAST:event_viewInmateActionPerformed
+
+    private void addInmateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addInmateActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        for(JFrame frame : formList)
+        {
+            if(frame instanceof AddInmate)
+            {
+                ((AddInmate) frame).clear();
+                frame.setVisible(true);
+                break;
+            }
+        }
+    }//GEN-LAST:event_addInmateActionPerformed
+
+    private void addCellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCellActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        for(JFrame frame : formList)
+        {
+            if(frame instanceof AddCell)
+            {
+                ((AddCell) frame).clear();
+                frame.setVisible(true);
+                break;
+            }
+        }
+    }//GEN-LAST:event_addCellActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu EmpMenu;
