@@ -101,6 +101,11 @@ public class EmployeeInfo extends javax.swing.JFrame {
 
         exit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
         exit.setText("Exit");
+        exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitActionPerformed(evt);
+            }
+        });
         FileMenu.add(exit);
 
         jMenuBar1.add(FileMenu);
@@ -109,14 +114,29 @@ public class EmployeeInfo extends javax.swing.JFrame {
 
         addEmp.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
         addEmp.setText("Add Employee");
+        addEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addEmpActionPerformed(evt);
+            }
+        });
         EmpMenu.add(addEmp);
 
         editEmp.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.CTRL_MASK));
         editEmp.setText("Edit Employee");
+        editEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editEmpActionPerformed(evt);
+            }
+        });
         EmpMenu.add(editEmp);
 
         viewEmp.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
         viewEmp.setText("View Employee");
+        viewEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewEmpActionPerformed(evt);
+            }
+        });
         EmpMenu.add(viewEmp);
 
         jMenuBar1.add(EmpMenu);
@@ -247,6 +267,55 @@ public class EmployeeInfo extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_viewEmpBtnClicked
+
+    private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
+System.exit(0);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_exitActionPerformed
+
+    private void addEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addEmpActionPerformed
+        
+        this.setVisible(false);
+        for(JFrame frame : formList)
+        {
+            if(frame instanceof AddEmployee1)
+            {
+                ((AddEmployee1) frame).clear();
+                frame.setVisible(true);
+                break;
+            }
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addEmpActionPerformed
+
+    private void editEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editEmpActionPerformed
+        // TODO add your handling code here:
+         this.setVisible(false);
+        for(JFrame frame : formList)
+        {
+            if(frame instanceof EditEmployee)
+            {
+                ((EditEmployee) frame).clear();
+                frame.setVisible(true);
+                break;
+            }
+        }
+    }//GEN-LAST:event_editEmpActionPerformed
+
+    private void viewEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewEmpActionPerformed
+        // TODO add your handling code here:
+         this.setVisible(false);
+        for(JFrame frame : formList)
+        {
+            if(frame instanceof ViewEmployee)
+            {
+                ((ViewEmployee) frame).clear();
+                frame.setVisible(true);
+                break;
+            }
+        }
+    }//GEN-LAST:event_viewEmpActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu EmpMenu;
