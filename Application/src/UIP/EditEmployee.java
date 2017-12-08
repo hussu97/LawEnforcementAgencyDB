@@ -22,76 +22,43 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author H_Abb
+ * @author Ahmed
  */
-public class AddEmployeeClerical extends javax.swing.JFrame {
+public class EditEmployee extends javax.swing.JFrame {
 
     /**
-     * Creates new form AddEmployeeClerical
+     * Creates new form EditEmployee
      */
-    ArrayList<JFrame> formList;
-    DefaultComboBoxModel jobType=new DefaultComboBoxModel();
-    DefaultComboBoxModel work=new DefaultComboBoxModel();
-    public AddEmployeeClerical(ArrayList<JFrame> formList) {
-        this.formList=formList;
+    
+    ArrayList <JFrame> formList;
+    DefaultComboBoxModel EditFieldType = new DefaultComboBoxModel();
+    public EditEmployee(ArrayList <JFrame> formList) {
+        this.formList = formList;
         this.setResizable(false);
         formList.add(this);
         initComponents();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
-        workLabel.setText("");
-        workCB.setVisible(false);
+        this.setLocation(dim.width/2 - this.getSize().width/2, dim.height/2 - this.getSize().height/2);
     }
 
-    public void setComboBox(){
-        jobType.removeAllElements();
-        Connection conn=OracleJDBCConnection.connectDataBase();
-        Statement st=null;
-        try {
-            st=conn.createStatement();
-            ResultSet rs=st.executeQuery("SELECT JOB_TYPE FROM CLERICAL");
-            while(rs.next()){
-                jobType.addElement(rs.getString(1));
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(AddEmployee1.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        jobType.addElement("Other");
-        
-        if(workPlaceCB.getSelectedIndex()==0){
-            workLabel.setText("Station Location*");
-            work.removeAllElements();
-            Statement st2=null;
-            try {
-                st2=conn.createStatement();
-                ResultSet rs=st2.executeQuery("SELECT STATION_LOCATION FROM STATION");
-                while(rs.next()){
-                    work.addElement(rs.getString(1));
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(AddEmployee1.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        else{
-            workLabel.setText("Prison ID*");
-            work.removeAllElements();
-            Statement st2=null;
-            try {
-                st2=conn.createStatement();
-                ResultSet rs=st2.executeQuery("SELECT PRISON_ID FROM PRISON");
-                while(rs.next()){
-                    work.addElement(rs.getString(1));
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(AddEmployee1.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        workCB.setVisible(true);
+    
+    public void setComboBox()
+    {
+        EditField.removeAllItems();
+        EditField.addItem("SSN");
+        EditField.addItem("Emp_Name");
+        EditField.addItem("Contact");
+        EditField.addItem("Hire_Date");
+        EditField.addItem("Sation_Location");
+        EditField.addItem("Prison_ID");
         
     }
     
-    public void clear(){
-        //setComboBox();
+    public void clear()
+    {
+        IDField.setText("");
+        NewValue.setText("");
+        setComboBox();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -103,19 +70,14 @@ public class AddEmployeeClerical extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        EditField = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        OtherField = new javax.swing.JTextField();
-        SalaryField = new javax.swing.JTextField();
-        JobTypeField = new javax.swing.JComboBox<>();
-        workCB = new javax.swing.JComboBox<>();
-        workLabel = new javax.swing.JLabel();
+        BackButton = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        NewValue = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        workPlaceCB = new javax.swing.JComboBox<>();
+        IDField = new javax.swing.JTextField();
+        EditButton = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         FileMenu = new javax.swing.JMenu();
         exit = new javax.swing.JMenuItem();
@@ -138,64 +100,45 @@ public class AddEmployeeClerical extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Add Employee");
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
+        jLabel1.setText("Edit Employee");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        jLabel2.setText("2/2");
-
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        jButton1.setText("Submit");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        EditField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        EditField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1submitClicked(evt);
+                EditFieldActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        jButton2.setText("Back");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jLabel2.setText("Select field to edit");
+
+        BackButton.setText("Back");
+        BackButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2backClicked(evt);
+                BackButtonActionPerformed(evt);
             }
         });
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel7.setText("Salary*");
+        jLabel3.setText("Enter new value");
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel8.setText("Job Type*");
-
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel9.setText("If other, please specify");
-
-        OtherField.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-
-        SalaryField.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-
-        JobTypeField.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        JobTypeField.setModel(jobType);
-
-        workCB.setVisible(false);
-        workCB.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        workCB.setModel(work);
-
-        workLabel.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        workLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel4.setText("Work place*");
-
-        workPlaceCB.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        workPlaceCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Station", "Prison" }));
-        workPlaceCB.addActionListener(new java.awt.event.ActionListener() {
+        NewValue.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                workPlaceCBActionPerformed(evt);
+                NewValueActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Enter Employee ID");
+
+        IDField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                IDFieldActionPerformed(evt);
+            }
+        });
+
+        EditButton.setText("Edit");
+        EditButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditButtonActionPerformed(evt);
             }
         });
 
@@ -347,152 +290,122 @@ public class AddEmployeeClerical extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(87, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(116, 116, 116))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel2))
+                        .addGap(63, 63, 63)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(IDField)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addContainerGap()
-                                    .addComponent(workLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(JobTypeField, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(SalaryField, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(OtherField, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(workCB, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(workPlaceCB, javax.swing.GroupLayout.Alignment.LEADING, 0, 208, Short.MAX_VALUE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(EditField, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(NewValue)))
+                        .addGap(152, 152, 152))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addComponent(BackButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(EditButton)
+                .addGap(76, 76, 76))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(31, 31, 31)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(SalaryField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(JobTypeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(OtherField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
+                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(workPlaceCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(workCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(workLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(IDField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jLabel2)
+                    .addComponent(EditField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(NewValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(55, 55, 55)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BackButton)
+                    .addComponent(EditButton))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1submitClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1submitClicked
-        // TODO add your handling code here:
-        if(SalaryField.getText().equals("")){
-            JOptionPane.showMessageDialog(null,"Some of the fields are invalid.","Error",JOptionPane.ERROR_MESSAGE);
-        }
-        else{
-            Connection conn = OracleJDBCConnection.connectDataBase();
-            Statement st = null;
-            ResultSet rs=null;
-            int ID=Employee.getID();
-            String sql = "Insert into Employee values(";
-            sql += ID;
-            sql += ", " + Employee.SSN;
-            sql += ", '" + Employee.name +"'";
-            sql += ", '" + Employee.contact +"'";
-            sql += ", '"+ Employee.date + "'";
-            if(workPlaceCB.getSelectedIndex()==0){
-                Employee.station=(String) workCB.getSelectedItem();
-                sql+=", '"+Employee.station+"'";
-                Employee.prison="NULL";
-                sql+=", "+Employee.prison+")";
-            }
-            else{
-                Employee.station="NULL";
-                sql+=", "+Employee.station;
-                Employee.prison=(String) workCB.getSelectedItem();
-                sql+=", '"+Employee.prison+"')";
-            }
-
-            String sql2 ="Insert into Clerical values(";
-            sql2 +=ID;
-            sql2 += ","+SalaryField.getText().trim();
-            if(JobTypeField.getSelectedItem().toString().trim().equals("Other"))
-                sql2+= ",'"+OtherField.getText().trim()+"')";
-            else
-                sql2+= ",'"+JobTypeField.getSelectedItem().toString().trim()+"')";
-                
-           try {
-                System.out.println(sql);
-                st.executeUpdate(sql);
-                System.out.println(sql2);
-                st.executeUpdate(sql2);
-                JOptionPane.showMessageDialog(null,"Clerical added.");
-                this.setVisible(false);
-                for (JFrame frame : formList) {
-                    if(frame instanceof AddEmployee1){
-                        ((AddEmployee1) frame).clear();
-                    }
-                    if (frame instanceof EmployeeInfo) {
-                        frame.setVisible(true);
-                        break;
-                    }
+    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
+            this.setVisible(false);
+            for(JFrame frame: formList)
+            {
+                if (frame instanceof EmployeeInfo)
+                {
+                    frame.setVisible(true);
+                    break;
                 }
-            } catch (SQLException ex) {
-                Logger.getLogger(AddEmployeeClerical.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(null,"Some of the fields are invalid.","Error",JOptionPane.ERROR_MESSAGE);
             }
-            try {
-                st.close();
-            } catch (SQLException ex) {
-                Logger.getLogger(AddEmployeeClerical.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }//GEN-LAST:event_jButton1submitClicked
+    }//GEN-LAST:event_BackButtonActionPerformed
 
-    private void jButton2backClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2backClicked
+    private void NewValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewValueActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
-        for (JFrame frame : formList) {
-            if (frame instanceof AddEmployee1) {
-                frame.setVisible(true);
-                break;
-            }
-        }
-    }//GEN-LAST:event_jButton2backClicked
+    }//GEN-LAST:event_NewValueActionPerformed
 
-    private void workPlaceCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_workPlaceCBActionPerformed
+    private void EditFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditFieldActionPerformed
+        int selection= EditField.getSelectedIndex();
+        Connection conn = OracleJDBCConnection.connectDataBase();
+        Statement st = null;
+        String SQL = "DELETE FROM EMPLPOYEE WHERE ";
+        if(selection == 1)
+        {
+           // SQL += EditField.getItemAt(1) + " = " + ;
+        }
+       
+    }//GEN-LAST:event_EditFieldActionPerformed
+
+    private void IDFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IDFieldActionPerformed
         // TODO add your handling code here:
-        setComboBox();
-    }//GEN-LAST:event_workPlaceCBActionPerformed
+    }//GEN-LAST:event_IDFieldActionPerformed
+
+    private void EditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditButtonActionPerformed
+       
+        try {
+            Connection conn = OracleJDBCConnection.connectDataBase();
+            System.out.println("1");
+            Statement st = conn.createStatement();
+            String EMP_ID = IDField.getText();
+            String selectedField = (String)EditField.getSelectedItem();
+            String SQL = "UPDATE EMPLOYEE SET " + selectedField + " = '" +  NewValue.getText() + "' WHERE EMP_ID = " + EMP_ID ;
+            //String SQL = "UPDATE EMPLOYEE" +
+//" SET EMP_NAME = 'again'" +
+//" WHERE EMP_ID = 6";
+           
+             int code = st.executeUpdate(SQL);
+             
+            if(code == 0)
+            {
+                JOptionPane.showMessageDialog(null, "Employee Not Found!  ", "Edit Employee",JOptionPane.INFORMATION_MESSAGE);
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Employee Edited ", "Edit Employee",JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(EditEmployee.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        System.out.println("Done");
+        
+        
+      
+    }//GEN-LAST:event_EditButtonActionPerformed
 
     private void exitBtnClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnClicked
         // TODO add your handling code here:
@@ -666,13 +579,20 @@ public class AddEmployeeClerical extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_addCellBtnClicked
 
+    /**
+     * @param args the command line arguments
+     */
+    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BackButton;
+    private javax.swing.JButton EditButton;
+    private javax.swing.JComboBox<String> EditField;
     private javax.swing.JMenu EmpMenu;
     private javax.swing.JMenu FileMenu;
-    private javax.swing.JComboBox<String> JobTypeField;
-    private javax.swing.JTextField OtherField;
+    private javax.swing.JTextField IDField;
+    private javax.swing.JTextField NewValue;
     private javax.swing.JMenu PrisonMenu;
-    private javax.swing.JTextField SalaryField;
     private javax.swing.JMenu StationMenu;
     private javax.swing.JMenuItem addCell;
     private javax.swing.JMenuItem addDept;
@@ -682,14 +602,10 @@ public class AddEmployeeClerical extends javax.swing.JFrame {
     private javax.swing.JMenuItem addStation;
     private javax.swing.JMenuItem editEmp;
     private javax.swing.JMenuItem exit;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem viewDept;
     private javax.swing.JMenuItem viewEmp;
@@ -697,8 +613,5 @@ public class AddEmployeeClerical extends javax.swing.JFrame {
     private javax.swing.JMenuItem viewPrison;
     private javax.swing.JMenuItem viewStation;
     private javax.swing.JMenuItem viewStationEmp;
-    private javax.swing.JComboBox<String> workCB;
-    private javax.swing.JLabel workLabel;
-    private javax.swing.JComboBox<String> workPlaceCB;
     // End of variables declaration//GEN-END:variables
 }

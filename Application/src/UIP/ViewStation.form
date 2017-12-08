@@ -4,27 +4,24 @@
   <NonVisualComponents>
     <Component class="javax.swing.JScrollBar" name="jScrollBar1">
     </Component>
-    <Menu class="javax.swing.JMenuBar" name="jMenuBar5">
+    <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
       <SubComponents>
-        <Menu class="javax.swing.JMenu" name="jMenu8">
+        <Menu class="javax.swing.JMenu" name="FileMenu">
           <Properties>
             <Property name="text" type="java.lang.String" value="File"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="exit4">
+            <MenuItem class="javax.swing.JMenuItem" name="exit">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+X"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Exit"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="exit4BtnClicked"/>
-              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu2">
+        <Menu class="javax.swing.JMenu" name="EmpMenu">
           <Properties>
             <Property name="text" type="java.lang.String" value="Employee"/>
           </Properties>
@@ -36,9 +33,14 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Add Employee"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addEmpBtnClicked"/>
-              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="editEmp">
+              <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+B"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Edit Employee"/>
+              </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="viewEmp">
               <Properties>
@@ -47,13 +49,10 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="View Employee"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewEmpBtnClicked"/>
-              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu3">
+        <Menu class="javax.swing.JMenu" name="StationMenu">
           <Properties>
             <Property name="text" type="java.lang.String" value="Station"/>
           </Properties>
@@ -65,9 +64,6 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="View Station"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewStationBtnClicked"/>
-              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="viewStationEmp">
               <Properties>
@@ -76,9 +72,6 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="View Station Employees"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewStationEmpBtnClicked"/>
-              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="addStation">
               <Properties>
@@ -87,9 +80,6 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Add Station"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addStationBtnClicked"/>
-              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="viewDept">
               <Properties>
@@ -98,9 +88,6 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="View Department"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewDeptBtnClicked"/>
-              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="addDept">
               <Properties>
@@ -109,13 +96,10 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Add Department"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addDeptBtnClicked"/>
-              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu4">
+        <Menu class="javax.swing.JMenu" name="PrisonMenu">
           <Properties>
             <Property name="text" type="java.lang.String" value="Prison"/>
           </Properties>
@@ -127,9 +111,6 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="View Prison"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewPrisonBtnClicked"/>
-              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="addPrison">
               <Properties>
@@ -138,9 +119,6 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Add Prison"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addPrisonBtnClicked"/>
-              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="viewInmate">
               <Properties>
@@ -149,9 +127,6 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="View Inmate"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewInmateBtnClicked"/>
-              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="addInmate">
               <Properties>
@@ -160,9 +135,6 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Add Inmate"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addInmateBtnClicked"/>
-              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="addCell">
               <Properties>
@@ -171,9 +143,6 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Add Cell"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addCellBtnClicked"/>
-              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -184,7 +153,7 @@
     <Property name="defaultCloseOperation" type="int" value="3"/>
   </Properties>
   <SyntheticProperties>
-    <SyntheticProperty name="menuBar" type="java.lang.String" value="jMenuBar5"/>
+    <SyntheticProperty name="menuBar" type="java.lang.String" value="jMenuBar1"/>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
@@ -226,7 +195,7 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="20" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

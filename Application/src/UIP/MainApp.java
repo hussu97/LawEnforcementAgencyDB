@@ -26,6 +26,7 @@ public class MainApp {
         java.awt.EventQueue.invokeLater(r);
         
         java.awt.EventQueue.invokeLater(() -> {new EmployeeInfo(formList).setVisible(false);});
+        java.awt.EventQueue.invokeLater(() -> {new EditEmployee(formList).setVisible(false);});
         java.awt.EventQueue.invokeLater(() -> {new StationInfo(formList).setVisible(false);});
         java.awt.EventQueue.invokeLater(() -> {new PrisonInfo(formList).setVisible(false);});
         java.awt.EventQueue.invokeLater(() -> {new AddEmployee1(formList).setVisible(false);});

@@ -71,18 +71,19 @@ public class AddEmployee1 extends javax.swing.JFrame {
         GuardButton = new javax.swing.JRadioButton();
         ClericalButton = new javax.swing.JRadioButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        FileMenu = new javax.swing.JMenu();
         exit = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        EmpMenu = new javax.swing.JMenu();
         addEmp = new javax.swing.JMenuItem();
+        editEmp = new javax.swing.JMenuItem();
         viewEmp = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
+        StationMenu = new javax.swing.JMenu();
         viewStation = new javax.swing.JMenuItem();
         viewStationEmp = new javax.swing.JMenuItem();
         addStation = new javax.swing.JMenuItem();
         viewDept = new javax.swing.JMenuItem();
         addDept = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
+        PrisonMenu = new javax.swing.JMenu();
         viewPrison = new javax.swing.JMenuItem();
         addPrison = new javax.swing.JMenuItem();
         viewInmate = new javax.swing.JMenuItem();
@@ -159,7 +160,7 @@ public class AddEmployee1 extends javax.swing.JFrame {
         ClericalButton.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         ClericalButton.setText("Clerical");
 
-        jMenu1.setText("File");
+        FileMenu.setText("File");
 
         exit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
         exit.setText("Exit");
@@ -168,11 +169,11 @@ public class AddEmployee1 extends javax.swing.JFrame {
                 exitBtnClicked(evt);
             }
         });
-        jMenu1.add(exit);
+        FileMenu.add(exit);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(FileMenu);
 
-        jMenu2.setText("Employee");
+        EmpMenu.setText("Employee");
 
         addEmp.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
         addEmp.setText("Add Employee");
@@ -181,7 +182,16 @@ public class AddEmployee1 extends javax.swing.JFrame {
                 addEmpBtnClicked(evt);
             }
         });
-        jMenu2.add(addEmp);
+        EmpMenu.add(addEmp);
+
+        editEmp.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.CTRL_MASK));
+        editEmp.setText("Edit Employee");
+        editEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editEmpBtnClicked(evt);
+            }
+        });
+        EmpMenu.add(editEmp);
 
         viewEmp.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
         viewEmp.setText("View Employee");
@@ -190,11 +200,11 @@ public class AddEmployee1 extends javax.swing.JFrame {
                 viewEmpBtnClicked(evt);
             }
         });
-        jMenu2.add(viewEmp);
+        EmpMenu.add(viewEmp);
 
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(EmpMenu);
 
-        jMenu3.setText("Station");
+        StationMenu.setText("Station");
 
         viewStation.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_MASK));
         viewStation.setText("View Station");
@@ -203,7 +213,7 @@ public class AddEmployee1 extends javax.swing.JFrame {
                 viewStationBtnClicked(evt);
             }
         });
-        jMenu3.add(viewStation);
+        StationMenu.add(viewStation);
 
         viewStationEmp.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
         viewStationEmp.setText("View Station Employees");
@@ -212,7 +222,7 @@ public class AddEmployee1 extends javax.swing.JFrame {
                 viewStationEmpBtnClicked(evt);
             }
         });
-        jMenu3.add(viewStationEmp);
+        StationMenu.add(viewStationEmp);
 
         addStation.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
         addStation.setText("Add Station");
@@ -221,7 +231,7 @@ public class AddEmployee1 extends javax.swing.JFrame {
                 addStationBtnClicked(evt);
             }
         });
-        jMenu3.add(addStation);
+        StationMenu.add(addStation);
 
         viewDept.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_MASK));
         viewDept.setText("View Department");
@@ -230,7 +240,7 @@ public class AddEmployee1 extends javax.swing.JFrame {
                 viewDeptBtnClicked(evt);
             }
         });
-        jMenu3.add(viewDept);
+        StationMenu.add(viewDept);
 
         addDept.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_MASK));
         addDept.setText("Add Department");
@@ -239,11 +249,11 @@ public class AddEmployee1 extends javax.swing.JFrame {
                 addDeptBtnClicked(evt);
             }
         });
-        jMenu3.add(addDept);
+        StationMenu.add(addDept);
 
-        jMenuBar1.add(jMenu3);
+        jMenuBar1.add(StationMenu);
 
-        jMenu4.setText("Prison");
+        PrisonMenu.setText("Prison");
 
         viewPrison.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_MASK));
         viewPrison.setText("View Prison");
@@ -252,7 +262,7 @@ public class AddEmployee1 extends javax.swing.JFrame {
                 viewPrisonBtnClicked(evt);
             }
         });
-        jMenu4.add(viewPrison);
+        PrisonMenu.add(viewPrison);
 
         addPrison.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_J, java.awt.event.InputEvent.CTRL_MASK));
         addPrison.setText("Add Prison");
@@ -261,7 +271,7 @@ public class AddEmployee1 extends javax.swing.JFrame {
                 addPrisonBtnClicked(evt);
             }
         });
-        jMenu4.add(addPrison);
+        PrisonMenu.add(addPrison);
 
         viewInmate.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_K, java.awt.event.InputEvent.CTRL_MASK));
         viewInmate.setText("View Inmate");
@@ -270,7 +280,7 @@ public class AddEmployee1 extends javax.swing.JFrame {
                 viewInmateBtnClicked(evt);
             }
         });
-        jMenu4.add(viewInmate);
+        PrisonMenu.add(viewInmate);
 
         addInmate.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
         addInmate.setText("Add Inmate");
@@ -279,7 +289,7 @@ public class AddEmployee1 extends javax.swing.JFrame {
                 addInmateBtnClicked(evt);
             }
         });
-        jMenu4.add(addInmate);
+        PrisonMenu.add(addInmate);
 
         addCell.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
         addCell.setText("Add Cell");
@@ -288,9 +298,9 @@ public class AddEmployee1 extends javax.swing.JFrame {
                 addCellBtnClicked(evt);
             }
         });
-        jMenu4.add(addCell);
+        PrisonMenu.add(addCell);
 
-        jMenuBar1.add(jMenu4);
+        jMenuBar1.add(PrisonMenu);
 
         setJMenuBar(jMenuBar1);
 
@@ -331,7 +341,7 @@ public class AddEmployee1 extends javax.swing.JFrame {
                                         .addComponent(SSNField)
                                         .addComponent(NameField)))))
                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -453,6 +463,19 @@ public class AddEmployee1 extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_addEmpBtnClicked
 
+    private void editEmpBtnClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editEmpBtnClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+        for (JFrame frame : formList) {
+            if (frame instanceof EditEmployee) {
+                ((EditEmployee) frame).clear();
+                frame.setVisible(true);
+                break;
+
+            }
+        }
+    }//GEN-LAST:event_editEmpBtnClicked
+
     private void viewEmpBtnClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewEmpBtnClicked
         // TODO add your handling code here:
         this.setVisible(false);
@@ -500,6 +523,7 @@ public class AddEmployee1 extends javax.swing.JFrame {
                 ((AddStation) frame).clear();
                 frame.setVisible(true);
                 break;
+
             }
         }
     }//GEN-LAST:event_addStationBtnClicked
@@ -597,17 +621,22 @@ public class AddEmployee1 extends javax.swing.JFrame {
     private javax.swing.JRadioButton ClericalButton;
     private javax.swing.JRadioButton CopButton;
     private javax.swing.JTextField DateField;
+    private javax.swing.JMenu EmpMenu;
     private javax.swing.ButtonGroup EmployeeType;
+    private javax.swing.JMenu FileMenu;
     private javax.swing.JRadioButton GuardButton;
     private javax.swing.JTextField MobileField;
     private javax.swing.JTextField NameField;
+    private javax.swing.JMenu PrisonMenu;
     private javax.swing.JTextField SSNField;
+    private javax.swing.JMenu StationMenu;
     private javax.swing.JMenuItem addCell;
     private javax.swing.JMenuItem addDept;
     private javax.swing.JMenuItem addEmp;
     private javax.swing.JMenuItem addInmate;
     private javax.swing.JMenuItem addPrison;
     private javax.swing.JMenuItem addStation;
+    private javax.swing.JMenuItem editEmp;
     private javax.swing.JMenuItem exit;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -618,10 +647,6 @@ public class AddEmployee1 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem viewDept;
     private javax.swing.JMenuItem viewEmp;
