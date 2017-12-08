@@ -56,20 +56,20 @@ public class ViewDepartment extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        DepartmentField = new javax.swing.JTextField();
+        InputField = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        IDField = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
         NameField = new javax.swing.JLabel();
         StationField = new javax.swing.JLabel();
-        FloorField = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
         ContactField = new javax.swing.JLabel();
+        FloorField = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        IDField = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         exit = new javax.swing.JMenuItem();
@@ -91,47 +91,127 @@ public class ViewDepartment extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("View Department");
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("Enter Department Name/ID");
 
+        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jButton1.setText("Generate");
+        jButton1.setMaximumSize(null);
+        jButton1.setMinimumSize(new java.awt.Dimension(137, 23));
+        jButton1.setPreferredSize(null);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1generateClicked(evt);
             }
         });
 
+        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jButton2.setText("Back");
+        jButton2.setMaximumSize(null);
+        jButton2.setMinimumSize(new java.awt.Dimension(137, 23));
+        jButton2.setPreferredSize(null);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2backClicked(evt);
             }
         });
 
-        jButton3.setText("Remove Department");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                removeDeptClicked(evt);
-            }
-        });
+        jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel16.setText("Contact");
 
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("ID");
+        jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel17.setText("Floor No");
 
-        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel12.setText("Name");
+        NameField.setFont(new java.awt.Font("Segoe UI", 3, 11)); // NOI18N
+        NameField.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
-        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel13.setText("Station");
+        StationField.setFont(new java.awt.Font("Segoe UI", 3, 11)); // NOI18N
+        StationField.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
-        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel14.setText("Floor No");
+        jLabel18.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel18.setText("Name");
 
-        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel15.setText("Contact");
+        ContactField.setFont(new java.awt.Font("Segoe UI", 3, 11)); // NOI18N
+        ContactField.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+
+        FloorField.setFont(new java.awt.Font("Segoe UI", 3, 11)); // NOI18N
+        FloorField.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+
+        jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel19.setText("Station");
+
+        IDField.setFont(new java.awt.Font("Segoe UI", 3, 11)); // NOI18N
+        IDField.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+
+        jLabel20.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel20.setText("ID");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE))
+                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ContactField, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(FloorField, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(StationField, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(NameField, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(IDField, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                        .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addContainerGap(293, Short.MAX_VALUE)))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(IDField, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel18)
+                    .addComponent(NameField, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(StationField, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(FloorField, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ContactField, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel16)))
+                    .addComponent(jLabel17))
+                .addContainerGap(27, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jLabel20)
+                    .addGap(37, 37, 37)
+                    .addComponent(jLabel19)
+                    .addContainerGap(79, Short.MAX_VALUE)))
+        );
 
         jMenu1.setText("File");
 
@@ -273,38 +353,24 @@ public class ViewDepartment extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(43, 43, 43)
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(31, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(IDField)
-                            .addComponent(NameField)
-                            .addComponent(StationField)
-                            .addComponent(FloorField)
-                            .addComponent(ContactField))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton3)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
-                                .addComponent(DepartmentField)))
-                        .addContainerGap())))
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(InputField, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addGap(31, 31, 31))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -314,33 +380,14 @@ public class ViewDepartment extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(DepartmentField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(InputField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(IDField))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(NameField))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
-                    .addComponent(StationField))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(FloorField))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15)
-                    .addComponent(ContactField))
-                .addContainerGap(78, Short.MAX_VALUE))
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -348,12 +395,8 @@ public class ViewDepartment extends javax.swing.JFrame {
 
     private void jButton1generateClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1generateClicked
         // TODO add your handling code here:
-        IDField.setText("");
-        NameField.setText("");
-        StationField.setText("");
-        FloorField.setText("");
-        ContactField.setText("");
-        if(DepartmentField.getText().trim().equals("")){
+        clear();
+        if(InputField.getText().trim().equals("")){
         }
         else{
             Connection conn=OracleJDBCConnection.connectDataBase();
@@ -361,19 +404,19 @@ public class ViewDepartment extends javax.swing.JFrame {
             try {
                 Statement st=conn.createStatement();
                 String sql="SELECT DEPT_ID,DEPT_NAME,STATION_LOCATION,FLOOR_NO,CONTACT_NO FROM STATION natural join CONSIST_OF natural join DEPARTMENT WHERE ";
-                if(DepartmentField.getText().trim().startsWith("1")||
-                    DepartmentField.getText().trim().startsWith("2")||
-                    DepartmentField.getText().trim().startsWith("3")||
-                    DepartmentField.getText().trim().startsWith("4")||
-                    DepartmentField.getText().trim().startsWith("5")||
-                    DepartmentField.getText().trim().startsWith("6")||
-                    DepartmentField.getText().trim().startsWith("7")||
-                    DepartmentField.getText().trim().startsWith("8")||
-                    DepartmentField.getText().trim().startsWith("9")){
-                    sql+="DEPT_ID = "+DepartmentField.getText().trim();
+                if(InputField.getText().trim().startsWith("1")||
+                    InputField.getText().trim().startsWith("2")||
+                    InputField.getText().trim().startsWith("3")||
+                    InputField.getText().trim().startsWith("4")||
+                    InputField.getText().trim().startsWith("5")||
+                    InputField.getText().trim().startsWith("6")||
+                    InputField.getText().trim().startsWith("7")||
+                    InputField.getText().trim().startsWith("8")||
+                    InputField.getText().trim().startsWith("9")){
+                    sql+="DEPT_ID = "+InputField.getText().trim();
                 }
                 else
-                sql+="LOWER(DEPT_NAME) LIKE LOWER('%"+DepartmentField.getText().trim()+"%')";
+                sql+="LOWER(DEPT_NAME) LIKE LOWER('%"+InputField.getText().trim()+"%')";
                 ResultSet rs=st.executeQuery(sql);
                 while(rs.next()){
                     empID=rs.getString(1);
@@ -382,9 +425,11 @@ public class ViewDepartment extends javax.swing.JFrame {
                     StationField.setText(rs.getString(3));
                     FloorField.setText(rs.getString(4));
                     ContactField.setText(rs.getString(5));
+                    
                 }
                 if(IDField.getText().trim().equals(""))
-                JOptionPane.showMessageDialog(null,"Department not found");
+                    JOptionPane.showMessageDialog(null,"Department not found.");
+                jPanel1.setVisible(true);
             } catch (SQLException ex) {
                 Logger.getLogger(AddEmployee1.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -402,14 +447,38 @@ public class ViewDepartment extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jButton2backClicked
-
-    private void removeDeptClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeDeptClicked
-        // TODO add your handling code here:
-        int answer;
-        if(!IDField.getText().trim().equals(""))
-            answer=JOptionPane.showConfirmDialog(null,"Are you sure you want to remove department "+NameField.getText());
-    }//GEN-LAST:event_removeDeptClicked
-
+    
+    private boolean findDepartment(){
+        Connection conn=OracleJDBCConnection.connectDataBase();
+        try {
+            Statement st=conn.createStatement();
+            String sql="SELECT * FROM DEPARTMENT WHERE ";
+            if(InputField.getText().trim().startsWith("1")||
+            InputField.getText().trim().startsWith("2")||
+            InputField.getText().trim().startsWith("3")||
+            InputField.getText().trim().startsWith("4")||
+            InputField.getText().trim().startsWith("5")||
+            InputField.getText().trim().startsWith("6")||
+            InputField.getText().trim().startsWith("7")||
+            InputField.getText().trim().startsWith("8")||
+            InputField.getText().trim().startsWith("9")){
+                sql+="DEPT_ID = "+InputField.getText().trim();}
+            else
+                sql+="LOWER(DEPT_NAME) LIKE LOWER('%"+InputField.getText().trim()+"%')";
+            
+            ResultSet rs=st.executeQuery(sql);
+            String str="";
+            while(rs.next()){
+                str=rs.getString(1);
+            }
+            if(str.equals(""))
+                return false;
+        } catch (SQLException ex) {
+            Logger.getLogger(ViewStation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return true;
+    }
+    
     private void exitBtnClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnClicked
         // TODO add your handling code here:
         System.exit(0);
@@ -571,9 +640,9 @@ public class ViewDepartment extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ContactField;
-    private javax.swing.JTextField DepartmentField;
     private javax.swing.JLabel FloorField;
     private javax.swing.JLabel IDField;
+    private javax.swing.JTextField InputField;
     private javax.swing.JLabel NameField;
     private javax.swing.JLabel StationField;
     private javax.swing.JMenuItem addCell;
@@ -585,19 +654,19 @@ public class ViewDepartment extends javax.swing.JFrame {
     private javax.swing.JMenuItem exit;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JMenuItem viewDept;
     private javax.swing.JMenuItem viewEmp;
     private javax.swing.JMenuItem viewInmate;

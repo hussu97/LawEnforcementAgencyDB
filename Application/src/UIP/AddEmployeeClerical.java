@@ -31,6 +31,7 @@ public class AddEmployeeClerical extends javax.swing.JFrame {
      */
     ArrayList<JFrame> formList;
     DefaultComboBoxModel jobType=new DefaultComboBoxModel();
+    DefaultComboBoxModel work=new DefaultComboBoxModel();
     public AddEmployeeClerical(ArrayList<JFrame> formList) {
         this.formList=formList;
         this.setResizable(false);
@@ -38,31 +39,59 @@ public class AddEmployeeClerical extends javax.swing.JFrame {
         initComponents();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
-        
+        workLabel.setText("");
+        workCB.setVisible(false);
     }
 
     public void setComboBox(){
         jobType.removeAllElements();
         Connection conn=OracleJDBCConnection.connectDataBase();
         Statement st=null;
-        
         try {
             st=conn.createStatement();
             ResultSet rs=st.executeQuery("SELECT JOB_TYPE FROM CLERICAL");
-            System.out.println("TEst");
             while(rs.next()){
                 jobType.addElement(rs.getString(1));
-                System.out.println("Found");
             }
-            
         } catch (SQLException ex) {
             Logger.getLogger(AddEmployee1.class.getName()).log(Level.SEVERE, null, ex);
         }
         jobType.addElement("Other");
+        
+        if(workPlaceCB.getSelectedIndex()==0){
+            workLabel.setText("Station Location*");
+            work.removeAllElements();
+            Statement st2=null;
+            try {
+                st2=conn.createStatement();
+                ResultSet rs=st2.executeQuery("SELECT STATION_LOCATION FROM STATION");
+                while(rs.next()){
+                    work.addElement(rs.getString(1));
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(AddEmployee1.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else{
+            workLabel.setText("Prison ID*");
+            work.removeAllElements();
+            Statement st2=null;
+            try {
+                st2=conn.createStatement();
+                ResultSet rs=st2.executeQuery("SELECT PRISON_ID FROM PRISON");
+                while(rs.next()){
+                    work.addElement(rs.getString(1));
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(AddEmployee1.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        workCB.setVisible(true);
+        
     }
     
     public void clear(){
-        setComboBox();
+        //setComboBox();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -80,10 +109,13 @@ public class AddEmployeeClerical extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
         OtherField = new javax.swing.JTextField();
         SalaryField = new javax.swing.JTextField();
         JobTypeField = new javax.swing.JComboBox<>();
+        workCB = new javax.swing.JComboBox<>();
+        workLabel = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        workPlaceCB = new javax.swing.JComboBox<>();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         exit = new javax.swing.JMenuItem();
@@ -105,12 +137,14 @@ public class AddEmployeeClerical extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Add Employee");
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jLabel2.setText("2/2");
 
+        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jButton1.setText("Submit");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,6 +152,7 @@ public class AddEmployeeClerical extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jButton2.setText("Back");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -125,15 +160,43 @@ public class AddEmployeeClerical extends javax.swing.JFrame {
             }
         });
 
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel7.setText("Salary*");
 
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel8.setText("Job Type*");
 
-        jLabel9.setText("If Other,");
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel9.setText("If other, please specify");
 
-        jLabel10.setText("Please specify");
+        OtherField.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
 
+        SalaryField.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+
+        JobTypeField.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         JobTypeField.setModel(jobType);
+
+        workCB.setVisible(false);
+        workCB.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        workCB.setModel(work);
+
+        workLabel.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        workLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel4.setText("Work place*");
+
+        workPlaceCB.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        workPlaceCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Station", "Prison" }));
+        workPlaceCB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                workPlaceCBActionPerformed(evt);
+            }
+        });
 
         jMenu1.setText("File");
 
@@ -275,41 +338,40 @@ public class AddEmployeeClerical extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton2)
-                                .addGap(92, 92, 92)
-                                .addComponent(jButton1))
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
-                        .addComponent(jLabel2))
+                        .addContainerGap()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addContainerGap()
+                                    .addComponent(workLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(OtherField)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(SalaryField)
-                                    .addComponent(JobTypeField, 0, 380, Short.MAX_VALUE))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addContainerGap())
+                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(JobTypeField, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(SalaryField, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(OtherField, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(workCB, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(workPlaceCB, javax.swing.GroupLayout.Alignment.LEADING, 0, 208, Short.MAX_VALUE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(SalaryField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -321,13 +383,21 @@ public class AddEmployeeClerical extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(OtherField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
-                .addGap(130, 130, 130))
+                    .addComponent(jLabel4)
+                    .addComponent(workPlaceCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(workCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(workLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -336,7 +406,7 @@ public class AddEmployeeClerical extends javax.swing.JFrame {
     private void jButton1submitClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1submitClicked
         // TODO add your handling code here:
         if(SalaryField.getText().equals("")){
-            JOptionPane.showMessageDialog(null,"Some of the fields are invalid","Error",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Some of the fields are invalid.","Error",JOptionPane.ERROR_MESSAGE);
         }
         else{
             Connection conn = OracleJDBCConnection.connectDataBase();
@@ -345,28 +415,21 @@ public class AddEmployeeClerical extends javax.swing.JFrame {
             int ID=Employee.getID();
             String sql = "Insert into Employee values(";
             sql += ID;
-            sql += "," + Employee.SSN +""  ;
-            sql += ",'" + Employee.name +"'";
-            sql += ",'" + Employee.contact +"'";
-            sql += ",'"+ Employee.date + "'";
-            if(Employee.station.equals("N/A"))
-            sql += ",NULL";
-            else
-            sql+=",'"+Employee.station+"'";
-            try {
-                st = conn.createStatement();
-                System.out.println(Employee.prison);
-                if(Employee.prison.equals("N/A"))
-                sql += ",NULL)";
-                else{
-                    rs=st.executeQuery("SELECT PRISON_ID FROM PRISON WHERE PRISON_LOCATION ='"+Employee.prison+"'");
-                    while(rs.next()){
-                        System.out.println(rs.getString(1));
-                        sql += ","+ rs.getString(1)+")";
-                    }
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(AddEmployeeCop.class.getName()).log(Level.SEVERE, null, ex);
+            sql += ", " + Employee.SSN;
+            sql += ", '" + Employee.name +"'";
+            sql += ", '" + Employee.contact +"'";
+            sql += ", '"+ Employee.date + "'";
+            if(workPlaceCB.getSelectedIndex()==0){
+                Employee.station=(String) workCB.getSelectedItem();
+                sql+=", '"+Employee.station+"'";
+                Employee.prison="NULL";
+                sql+=", "+Employee.prison+")";
+            }
+            else{
+                Employee.station="NULL";
+                sql+=", "+Employee.station;
+                Employee.prison=(String) workCB.getSelectedItem();
+                sql+=", '"+Employee.prison+"')";
             }
 
             String sql2 ="Insert into Clerical values(";
@@ -382,7 +445,7 @@ public class AddEmployeeClerical extends javax.swing.JFrame {
                 st.executeUpdate(sql);
                 System.out.println(sql2);
                 st.executeUpdate(sql2);
-                JOptionPane.showMessageDialog(null,"Clerical Added");
+                JOptionPane.showMessageDialog(null,"Clerical added.");
                 this.setVisible(false);
                 for (JFrame frame : formList) {
                     if(frame instanceof AddEmployee1){
@@ -395,7 +458,7 @@ public class AddEmployeeClerical extends javax.swing.JFrame {
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(AddEmployeeClerical.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(null,"Some of the fields are invalid","Error",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null,"Some of the fields are invalid.","Error",JOptionPane.ERROR_MESSAGE);
             }
             try {
                 st.close();
@@ -575,6 +638,11 @@ public class AddEmployeeClerical extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_addCellBtnClicked
 
+    private void workPlaceCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_workPlaceCBActionPerformed
+        // TODO add your handling code here:
+        setComboBox();
+    }//GEN-LAST:event_workPlaceCBActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> JobTypeField;
     private javax.swing.JTextField OtherField;
@@ -589,8 +657,8 @@ public class AddEmployeeClerical extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -605,5 +673,8 @@ public class AddEmployeeClerical extends javax.swing.JFrame {
     private javax.swing.JMenuItem viewPrison;
     private javax.swing.JMenuItem viewStation;
     private javax.swing.JMenuItem viewStationEmp;
+    private javax.swing.JComboBox<String> workCB;
+    private javax.swing.JLabel workLabel;
+    private javax.swing.JComboBox<String> workPlaceCB;
     // End of variables declaration//GEN-END:variables
 }
