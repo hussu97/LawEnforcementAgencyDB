@@ -55,31 +55,48 @@ public class OracleJDBCConnection {
                 try {
                     Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                         ResultSet.CONCUR_UPDATABLE);
+                    int ID=0;
                     ResultSet rs = statement.executeQuery("SELECT MAX(EMP_ID) FROM EMPLOYEE");
                     while(rs.next()){
-                        int ID=rs.getInt(1);
-                        Employee.ID=ID;
+                        ID=rs.getInt(1);
+                        
                     }
+                    if(ID==0)
+                        Employee.ID=1;
+                    else
+                        Employee.ID=ID;
                     rs = statement.executeQuery("SELECT MAX(INMATE_ID) FROM INMATE");
                     while(rs.next()){
-                        int ID=rs.getInt(1);
-                        Inmate.ID=ID;
+                        ID=rs.getInt(1);
                     }
+                    if(ID==0)
+                        Inmate.ID=1;
+                    else
+                        Inmate.ID=ID;
                     rs = statement.executeQuery("SELECT MAX(PRISON_ID) FROM PRISON");
                     while(rs.next()){
-                        int ID=rs.getInt(1);
-                        Prison.ID=ID;
+                        ID=rs.getInt(1);
                     }
+                    if(ID==0)
+                        Prison.ID=1;
+                    else
+                        Prison.ID=ID;
                     rs = statement.executeQuery("SELECT MAX(CELL_ID) FROM CELL");
                     while(rs.next()){
-                        int ID=rs.getInt(1);
-                        Cell.ID=ID;
+                        ID=rs.getInt(1);
                     }
+                    if(ID==0)
+                        Cell.ID=1;
+                    else
+                        Cell.ID=ID;
                     rs = statement.executeQuery("SELECT MAX(DEPT_ID) FROM DEPARTMENT");
                     while(rs.next()){
-                        int ID=rs.getInt(1);
-                        Department.ID=ID;
+                        ID=rs.getInt(1);
                     }
+                    if(ID==0)
+                        Department.ID=1;
+                    else
+                        Department.ID=ID;
                 } catch (SQLException ex) {
                     Logger.getLogger(OracleJDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
                 }
