@@ -54,7 +54,6 @@ public class AddInmate extends javax.swing.JFrame {
     private void setComboBox(){
         cell_ID.clear();
         prison.removeAllElements();
-        prison.addElement("N/A");
         cellType.removeAllElements();
         cellType.addElement("N/A");
         Connection conn=OracleJDBCConnection.connectDataBase();
