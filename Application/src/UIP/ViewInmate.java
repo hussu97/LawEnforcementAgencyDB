@@ -46,7 +46,8 @@ public class ViewInmate extends javax.swing.JFrame {
         PrisonField.setText("");
         CellField.setText("");
         CellTypeField.setText("");
-        LocationField.setText("");
+        InputField.setText("");
+        jPanel1.setVisible(false);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -59,24 +60,25 @@ public class ViewInmate extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        LocationField = new javax.swing.JTextField();
+        InputField = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        IDField = new javax.swing.JLabel();
-        NameField = new javax.swing.JLabel();
-        ImprisonedField = new javax.swing.JLabel();
-        ReleasedField = new javax.swing.JLabel();
-        PrisonField = new javax.swing.JLabel();
-        CellField = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        IDField = new javax.swing.JLabel();
         CellTypeField = new javax.swing.JLabel();
+        CellField = new javax.swing.JLabel();
+        PrisonField = new javax.swing.JLabel();
+        ReleasedField = new javax.swing.JLabel();
+        ImprisonedField = new javax.swing.JLabel();
+        NameField = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         exit = new javax.swing.JMenuItem();
@@ -98,26 +100,37 @@ public class ViewInmate extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("View Inmate");
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("Enter Inmate Name/ID");
 
+        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jButton1.setText("Generate");
+        jButton1.setMaximumSize(new java.awt.Dimension(109, 23));
+        jButton1.setMinimumSize(new java.awt.Dimension(109, 23));
+        jButton1.setPreferredSize(new java.awt.Dimension(109, 23));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1generateClicked(evt);
             }
         });
 
+        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jButton2.setText("Back");
+        jButton2.setMaximumSize(new java.awt.Dimension(109, 23));
+        jButton2.setMinimumSize(new java.awt.Dimension(109, 23));
+        jButton2.setPreferredSize(new java.awt.Dimension(109, 23));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2backClicked(evt);
             }
         });
 
+        jButton3.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jButton3.setText("Remove Inmate");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -125,25 +138,112 @@ public class ViewInmate extends javax.swing.JFrame {
             }
         });
 
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("ID");
-
-        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel12.setText("Name");
-
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel13.setText("Date Imprisoned");
 
-        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel12.setText("Name");
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel11.setText("ID");
+
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel14.setText("Date Released");
 
-        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel15.setText("Prison");
 
-        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel16.setText("Cell ID");
 
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("Cell Type");
+
+        IDField.setFont(new java.awt.Font("Segoe UI", 3, 11)); // NOI18N
+        IDField.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+
+        CellTypeField.setFont(new java.awt.Font("Segoe UI", 3, 11)); // NOI18N
+        CellTypeField.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+
+        CellField.setFont(new java.awt.Font("Segoe UI", 3, 11)); // NOI18N
+        CellField.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+
+        PrisonField.setFont(new java.awt.Font("Segoe UI", 3, 11)); // NOI18N
+        PrisonField.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+
+        ReleasedField.setFont(new java.awt.Font("Segoe UI", 3, 11)); // NOI18N
+        ReleasedField.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+
+        ImprisonedField.setFont(new java.awt.Font("Segoe UI", 3, 11)); // NOI18N
+        ImprisonedField.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+
+        NameField.setFont(new java.awt.Font("Segoe UI", 3, 11)); // NOI18N
+        NameField.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(IDField, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+                    .addComponent(CellTypeField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(CellField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(PrisonField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ReleasedField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ImprisonedField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(NameField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(IDField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(NameField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(ImprisonedField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(ReleasedField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(PrisonField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(CellField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(CellTypeField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
 
         jMenu1.setText("File");
 
@@ -286,42 +386,20 @@ public class ViewInmate extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(122, 122, 122)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(InputField, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(LocationField)))
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(43, 43, 43)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(IDField)
-                            .addComponent(NameField)
-                            .addComponent(ImprisonedField)
-                            .addComponent(ReleasedField)
-                            .addComponent(PrisonField)
-                            .addComponent(CellField)
-                            .addComponent(CellTypeField))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -331,41 +409,15 @@ public class ViewInmate extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(LocationField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(InputField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(IDField))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(NameField))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
-                    .addComponent(ImprisonedField))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(ReleasedField))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15)
-                    .addComponent(PrisonField))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel16)
-                    .addComponent(CellField))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(CellTypeField))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -380,7 +432,7 @@ public class ViewInmate extends javax.swing.JFrame {
         PrisonField.setText("");
         CellField.setText("");
         CellTypeField.setText("");
-        if(LocationField.getText().trim().equals("")){
+        if(InputField.getText().trim().equals("")){
         }
         else{
             Connection conn=OracleJDBCConnection.connectDataBase();
@@ -388,19 +440,19 @@ public class ViewInmate extends javax.swing.JFrame {
                 Statement st=conn.createStatement();
                 String sql="SELECT INMATE_ID,INMATE_NAME,IMPRISON_DATE,IMPRISON_DATE+SENTENCE_PERIOD,PRISON_LOCATION,INMATE.CELL_ID,CELL_TYPE FROM INMATE,PRISON,CELL "
                         + "WHERE INMATE.PRISON_ID=PRISON.PRISON_ID AND INMATE.CELL_ID=CELL.CELL_ID AND ";
-                if(LocationField.getText().trim().startsWith("1")||
-                   LocationField.getText().trim().startsWith("2")||
-                   LocationField.getText().trim().startsWith("3")||
-                   LocationField.getText().trim().startsWith("4")||
-                   LocationField.getText().trim().startsWith("5")||
-                   LocationField.getText().trim().startsWith("6")||
-                   LocationField.getText().trim().startsWith("7")||
-                   LocationField.getText().trim().startsWith("8")||
-                   LocationField.getText().trim().startsWith("9")){
-                    sql+="INMATE_ID= "+LocationField.getText().trim();
+                if(InputField.getText().trim().startsWith("1")||
+                   InputField.getText().trim().startsWith("2")||
+                   InputField.getText().trim().startsWith("3")||
+                   InputField.getText().trim().startsWith("4")||
+                   InputField.getText().trim().startsWith("5")||
+                   InputField.getText().trim().startsWith("6")||
+                   InputField.getText().trim().startsWith("7")||
+                   InputField.getText().trim().startsWith("8")||
+                   InputField.getText().trim().startsWith("9")){
+                    sql+="INMATE_ID= "+InputField.getText().trim();
                 }
                 else
-                    sql+="LOWER(INMATE_NAME) LIKE LOWER('%"+LocationField.getText().trim()+"%')";
+                    sql+="LOWER(INMATE_NAME) LIKE LOWER('%"+InputField.getText().trim()+"%')";
                 ResultSet rs=st.executeQuery(sql);
                 while(rs.next()){
                     IDField.setText(rs.getString(1));
@@ -412,10 +464,12 @@ public class ViewInmate extends javax.swing.JFrame {
                     CellTypeField.setText(rs.getString(7));
                 }
                 if(IDField.getText().trim().equals(""))
-                JOptionPane.showMessageDialog(null,"Inmate not found");
+                    JOptionPane.showMessageDialog(null,"Inmate not found");
+                jPanel1.setVisible(true);
             } catch (SQLException ex) {
                 Logger.getLogger(AddEmployee1.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
         }
     }//GEN-LAST:event_jButton1generateClicked
 
@@ -432,11 +486,71 @@ public class ViewInmate extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton2backClicked
 
+    private boolean findInmate(){
+        Connection conn=OracleJDBCConnection.connectDataBase();
+        try {
+            Statement st=conn.createStatement();
+            String sql="SELECT * FROM INMATE WHERE ";
+            if(InputField.getText().trim().startsWith("1")||
+            InputField.getText().trim().startsWith("2")||
+            InputField.getText().trim().startsWith("3")||
+            InputField.getText().trim().startsWith("4")||
+            InputField.getText().trim().startsWith("5")||
+            InputField.getText().trim().startsWith("6")||
+            InputField.getText().trim().startsWith("7")||
+            InputField.getText().trim().startsWith("8")||
+            InputField.getText().trim().startsWith("9")){
+                sql+="INMATE_ID = "+InputField.getText().trim();}
+            else
+                sql+="LOWER(INMATE_NAME) LIKE LOWER('%"+InputField.getText().trim()+"%')";
+            
+            ResultSet rs=st.executeQuery(sql);
+            String str="";
+            while(rs.next()){
+                str=rs.getString(1);
+            }
+            if(str.equals(""))
+                return false;
+        } catch (SQLException ex) {
+            Logger.getLogger(ViewStation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return true;
+    }
+    
     private void jButton3removePrisonClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3removePrisonClicked
-        // TODO add your handling code here:
-        int answer;
-        if(!IDField.getText().trim().equals(""))
-        answer=JOptionPane.showConfirmDialog(null,"Are you sure you want to remove inmate "+NameField.getText());
+        int choice;
+        if(!InputField.getText().trim().equals("")){
+            choice=JOptionPane.showConfirmDialog(this,"Are you sure you want to remove inmate "+InputField.getText()+ "?");
+            if(choice==JOptionPane.YES_OPTION){
+                boolean found=findInmate();
+                if(found){
+                    Connection conn=OracleJDBCConnection.connectDataBase();
+                    try {
+                        Statement st=conn.createStatement();
+                        String sql="DELETE FROM INMATE WHERE ";
+                        if(InputField.getText().trim().startsWith("1")||
+                        InputField.getText().trim().startsWith("2")||
+                        InputField.getText().trim().startsWith("3")||
+                        InputField.getText().trim().startsWith("4")||
+                        InputField.getText().trim().startsWith("5")||
+                        InputField.getText().trim().startsWith("6")||
+                        InputField.getText().trim().startsWith("7")||
+                        InputField.getText().trim().startsWith("8")||
+                        InputField.getText().trim().startsWith("9")){
+                            sql+="INMATE_ID = "+InputField.getText().trim();}
+                        else
+                            sql+="LOWER(INMATE_NAME) LIKE LOWER('%"+InputField.getText().trim()+"%')";
+                        ResultSet rs=st.executeQuery(sql);
+                        clear();
+                        JOptionPane.showMessageDialog(this, "Inmate successfully removed.");
+                    } catch (SQLException ex) {
+                        Logger.getLogger(ViewStation.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                else
+                    JOptionPane.showMessageDialog(this,"Inmate not found.");
+            }
+        }
     }//GEN-LAST:event_jButton3removePrisonClicked
 
     private void exitBtnClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnClicked
@@ -603,7 +717,7 @@ public class ViewInmate extends javax.swing.JFrame {
     private javax.swing.JLabel CellTypeField;
     private javax.swing.JLabel IDField;
     private javax.swing.JLabel ImprisonedField;
-    private javax.swing.JTextField LocationField;
+    private javax.swing.JTextField InputField;
     private javax.swing.JLabel NameField;
     private javax.swing.JLabel PrisonField;
     private javax.swing.JLabel ReleasedField;
@@ -631,6 +745,7 @@ public class ViewInmate extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JMenuItem viewDept;
     private javax.swing.JMenuItem viewEmp;
     private javax.swing.JMenuItem viewInmate;
