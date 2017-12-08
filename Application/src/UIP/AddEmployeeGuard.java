@@ -21,7 +21,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
- *
+ *p
  * @author H_Abb
  */
 public class AddEmployeeGuard extends javax.swing.JFrame {
