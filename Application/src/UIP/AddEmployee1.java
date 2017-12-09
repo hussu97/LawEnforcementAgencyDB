@@ -396,7 +396,21 @@ public class AddEmployee1 extends javax.swing.JFrame {
 
     private void nextClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextClicked
         // TODO add your handling code here:
-        if(NameField.getText().equals("")||SSNField.getText().equals("")||MobileField.getText().equals("")||DateField.getText().equals("")){
+        Connection conn = OracleJDBCConnection.connectDataBase();
+        Statement st = null;
+        ResultSet rs=null;
+        boolean duplicate=false;
+        try {
+            st=conn.createStatement();
+            rs=st.executeQuery("SELECT SSN FROM EMPLOYEE WHERE SSN="+SSNField.getText().trim());
+            while(rs.next()){
+                duplicate=true;
+                int ssn=rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AddEmployee1.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if(NameField.getText().trim().equals("")||SSNField.getText().trim().equals("")||MobileField.getText().trim().equals("")||DateField.getText().equals("")){
             JOptionPane.showMessageDialog(null,"Some of the fields are invalid.","Error",JOptionPane.ERROR_MESSAGE);
         }
         else if(MobileField.getText().trim().length()!=9){
@@ -405,6 +419,8 @@ public class AddEmployee1 extends javax.swing.JFrame {
         else if(SSNField.getText().trim().length()!=9){
             JOptionPane.showMessageDialog(null,"Please enter a valid SSN.","Error",JOptionPane.ERROR_MESSAGE);
         }
+        else if(duplicate)
+            JOptionPane.showMessageDialog(null,"Duplicate SSN.","Error",JOptionPane.ERROR_MESSAGE);
         else{
             Employee.SSN=SSNField.getText().trim();
             Employee.name=NameField.getText().trim();

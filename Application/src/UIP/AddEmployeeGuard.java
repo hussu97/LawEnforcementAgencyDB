@@ -383,16 +383,16 @@ public class AddEmployeeGuard extends javax.swing.JFrame {
             sql += ",'" + Employee.name +"'";
             sql += ",'" + Employee.contact +"'";
             sql += ",'"+ Employee.date + "'";
-            if(Employee.station.equals("N/A"))
+            if(workPlaceCB.getSelectedItem().toString().equals("Prison"))
             sql += ",NULL";
             else
-            sql+=",'"+Employee.station+"'";
+            sql+=",'"+workCB.getSelectedItem().toString()+"'";
             try {
                 st = conn.createStatement();
-                if(Employee.prison.equals("N/A"))
+                if(workPlaceCB.getSelectedItem().toString().equals("Station"))
                     sql += ",NULL)";
                 else{
-                    rs=st.executeQuery("SELECT PRISON_ID FROM PRISON WHERE PRISON_LOCATION ='"+Employee.prison+"'");
+                    rs=st.executeQuery("SELECT PRISON_ID FROM PRISON WHERE PRISON_LOCATION ='"+workCB.getSelectedItem().toString()+"'");
                     while(rs.next())
                         sql += ","+ rs.getString(1)+")";
                 }
