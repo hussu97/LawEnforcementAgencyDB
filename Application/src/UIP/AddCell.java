@@ -135,6 +135,11 @@ public class AddCell extends javax.swing.JFrame {
 
         CellTypeField.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         CellTypeField.setModel(cellType);
+        CellTypeField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CellTypeFieldActionPerformed(evt);
+            }
+        });
 
         FileMenu.setText("File");
 
@@ -554,6 +559,10 @@ public class AddCell extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_addCellBtnClicked
+
+    private void CellTypeFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CellTypeFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CellTypeFieldActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> CellTypeField;

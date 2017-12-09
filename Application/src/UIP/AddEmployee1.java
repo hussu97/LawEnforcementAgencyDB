@@ -399,8 +399,11 @@ public class AddEmployee1 extends javax.swing.JFrame {
         if(NameField.getText().equals("")||SSNField.getText().equals("")||MobileField.getText().equals("")||DateField.getText().equals("")){
             JOptionPane.showMessageDialog(null,"Some of the fields are invalid.","Error",JOptionPane.ERROR_MESSAGE);
         }
-        else if(MobileField.getText().length()!=8){
+        else if(MobileField.getText().trim().length()!=9){
             JOptionPane.showMessageDialog(null,"Please enter a valid mobile number.","Error",JOptionPane.ERROR_MESSAGE);
+        }
+        else if(SSNField.getText().trim().length()!=9){
+            JOptionPane.showMessageDialog(null,"Please enter a valid SSN.","Error",JOptionPane.ERROR_MESSAGE);
         }
         else{
             Employee.SSN=SSNField.getText().trim();

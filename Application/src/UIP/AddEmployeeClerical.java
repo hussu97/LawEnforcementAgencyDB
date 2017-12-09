@@ -91,7 +91,9 @@ public class AddEmployeeClerical extends javax.swing.JFrame {
     }
     
     public void clear(){
-        //setComboBox();
+        SalaryField.setText("");
+        OtherField.setText("");
+        setComboBox();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -439,9 +441,14 @@ public class AddEmployeeClerical extends javax.swing.JFrame {
                 Employee.station="NULL";
                 sql+=", "+Employee.station;
                 Employee.prison=(String) workCB.getSelectedItem();
-                sql+=", '"+Employee.prison+"')";
+                sql+=","+Employee.prison+")";
             }
 
+            try {
+                st=conn.createStatement();
+            } catch (SQLException ex) {
+                Logger.getLogger(AddEmployeeClerical.class.getName()).log(Level.SEVERE, null, ex);
+            }
             String sql2 ="Insert into Clerical values(";
             sql2 +=ID;
             sql2 += ","+SalaryField.getText().trim();

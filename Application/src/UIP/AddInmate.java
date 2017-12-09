@@ -9,6 +9,7 @@ import ALP.Inmate;
 import DSP.OracleJDBCConnection;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.ItemEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -47,21 +48,18 @@ public class AddInmate extends javax.swing.JFrame {
         SentenceField.setText("");
         ImprisonedField.setText("");
         setComboBox();
-        PrisonField.setSelectedIndex(0);
-        CellTypeField.setSelectedIndex(0);
     }
     
     private void setComboBox(){
         cell_ID.clear();
         prison.removeAllElements();
-        prison.addElement("N/A");
         cellType.removeAllElements();
-        cellType.addElement("N/A");
+        //prison.addElement("N/A");
         Connection conn=OracleJDBCConnection.connectDataBase();
         Statement st=null;
         try {
             st=conn.createStatement();
-            ResultSet rs=st.executeQuery("SELECT PRISON_LOCATION FROM PRISON");
+            ResultSet rs=st.executeQuery("SELECT PRISON_LOCATION FROM PRISON ORDER BY PRISON_LOCATION");
             while(rs.next()){
                 prison.addElement(rs.getString(1));
             }
@@ -143,9 +141,9 @@ public class AddInmate extends javax.swing.JFrame {
         PrisonField.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         PrisonField.setModel(prison);
         PrisonField.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        PrisonField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PrisonFieldActionPerformed(evt);
+        PrisonField.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                PrisonFieldItemStateChanged(evt);
             }
         });
 
@@ -173,6 +171,11 @@ public class AddInmate extends javax.swing.JFrame {
         CellTypeField.setModel(cellType);
         CellTypeField.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         CellTypeField.setFocusCycleRoot(true);
+        CellTypeField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CellTypeFieldActionPerformed(evt);
+            }
+        });
 
         FileMenu.setText("File");
 
@@ -451,42 +454,6 @@ public class AddInmate extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_submitClicked
 
-    private void PrisonFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PrisonFieldActionPerformed
-        // TODO add your handling code here:
-        String prison=null;
-        if(PrisonField.getSelectedItem()!=null)
-            prison=PrisonField.getSelectedItem().toString();
-        System.out.println(prison);
-        Connection conn=OracleJDBCConnection.connectDataBase();
-        cellType.removeAllElements();
-        cell_ID.clear();
-        cellType.addElement("N/A");
-        Statement st=null;
-        try {
-            st=conn.createStatement();
-            String sql="SELECT DISTINCT CELL_TYPE,CELL_ID FROM CELL,PRISON WHERE CELL.PRISON_ID=PRISON.PRISON_ID "
-                    + "AND PRISON_LOCATION ='"+prison+"' AND CELL.CELL_ID <> ALL(SELECT CELL_ID FROM INMATE)";
-            ResultSet rs=st.executeQuery(sql);
-            int i = 0;
-            while(rs.next()) {
-                i++;
-            }          
-            if(i==0)
-                JOptionPane.showMessageDialog(null,"This prison does not have any available cells","Error",JOptionPane.ERROR_MESSAGE);
-            else{
-                cell_ID.clear();
-                cellType.removeAllElements();
-                rs=st.executeQuery(sql);
-                while(rs.next()){
-                    cellType.addElement(rs.getString(1));
-                    cell_ID.add(rs.getInt(2));
-                }
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(AddEmployee1.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_PrisonFieldActionPerformed
-
     private void exitBtnClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnClicked
         // TODO add your handling code here:
         System.exit(0);
@@ -658,6 +625,54 @@ public class AddInmate extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_addCellBtnClicked
+
+    private void CellTypeFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CellTypeFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CellTypeFieldActionPerformed
+
+    private void PrisonFieldItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_PrisonFieldItemStateChanged
+        // TODO add your handling code here:
+        if(evt.getStateChange()==ItemEvent.SELECTED){
+        String prison=null;
+        System.out.println(PrisonField.getSelectedItem());
+        if(PrisonField.getSelectedItem()!=null)
+            prison=PrisonField.getSelectedItem().toString();
+        System.out.println(prison);
+        Connection conn=OracleJDBCConnection.connectDataBase();
+        cellType.removeAllElements();
+        cell_ID.clear();
+        cellType.addElement("N/A");
+        Statement st=null;
+        int cellID;
+        String cell_type;
+        try {
+            st=conn.createStatement();
+            String sql="SELECT DISTINCT CELL_ID, CELL_TYPE FROM CELL,PRISON WHERE CELL.PRISON_ID=PRISON.PRISON_ID "
+                    + "AND PRISON_LOCATION ='"+prison+"' AND CELL.CELL_ID <> ALL(SELECT CELL_ID FROM INMATE)";
+            ResultSet rs=st.executeQuery(sql);
+            int i = 0;
+            while(rs.next()) {
+                i++;
+            }          
+            if(i==0)
+                JOptionPane.showMessageDialog(null,"This prison does not have any available cells","Error",JOptionPane.ERROR_MESSAGE);
+            else{
+                cell_ID.clear();
+                cellType.removeAllElements();
+                rs=st.executeQuery(sql);
+                while(rs.next()){
+                    cellID=rs.getInt(1);
+                    cell_type=rs.getString(2);
+                    cellType.addElement(cellID+" - "+cell_type);
+                    cell_ID.add(cellID);
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AddEmployee1.class.getName()).log(Level.SEVERE, null, ex);
+       
+        }
+        }
+    }//GEN-LAST:event_PrisonFieldItemStateChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> CellTypeField;

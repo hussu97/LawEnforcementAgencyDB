@@ -133,7 +133,6 @@ private DefaultComboBoxModel department=new DefaultComboBoxModel();
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel11.setText("Salary*");
 
-        StationField.setVisible(false);
         StationField.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         StationField.setModel(station);
         StationField.addActionListener(new java.awt.event.ActionListener() {
@@ -354,10 +353,10 @@ private DefaultComboBoxModel department=new DefaultComboBoxModel();
                 .addContainerGap()
                 .addComponent(jLabel12)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(StationField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(workLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(workLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(StationField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(DepartmentField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -387,11 +386,80 @@ private DefaultComboBoxModel department=new DefaultComboBoxModel();
 
     private void StationFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StationFieldActionPerformed
         Employee.station=(String)StationField.getSelectedItem();
+        System.out.println(Employee.station);
         setDeptComboBox();
     }//GEN-LAST:event_StationFieldActionPerformed
 
     private void jButton4submitClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4submitClicked
+        if(SalaryField.getText().equals("")||ArrestField.getText().equals("")||PosField.getText().equals("")){
+            JOptionPane.showMessageDialog(null,"Some of the fields are invalid.","Error",JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            Connection conn = OracleJDBCConnection.connectDataBase();
+            Statement st = null;
+            ResultSet rs=null;
+            int ID=Employee.getID();
+            String sql = "Insert into Employee values(";
+            sql += ID;
+            sql += ", " + Employee.SSN;
+            sql += ", '" + Employee.name +"'";
+            sql += ", '" + Employee.contact +"'";
+            sql += ", '"+ Employee.date + "'";
+            Employee.station=(String) StationField.getSelectedItem();
+            sql+=", '"+Employee.station+"'";
+            Employee.prison="NULL";
+            sql+=", "+Employee.prison+")";
 
+            try {
+                st=conn.createStatement();
+            } catch (SQLException ex) {
+                Logger.getLogger(AddEmployeeClerical.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                rs=st.executeQuery("SELECT DEPT_ID FROM DEPARTMENT WHERE DEPT_NAME='"+DepartmentField.getSelectedItem().toString()+"'");
+            } catch (SQLException ex) {
+                Logger.getLogger(AddEmployeeCop.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            int dept_id=0;
+            try {
+                while(rs.next()){
+                    dept_id=rs.getInt(1);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(AddEmployeeCop.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            String sql2 ="Insert into Cop values(";
+            sql2 +=ID;
+            sql2 +=","+dept_id;
+            sql2 +=",'"+PosField.getText().trim()+"'";
+            sql2 +=","+ArrestField.getText().trim();
+            sql2 += ","+SalaryField.getText().trim()+")";
+           try {
+                System.out.println(sql);
+                st.executeUpdate(sql);
+                System.out.println(sql2);
+                st.executeUpdate(sql2);
+                JOptionPane.showMessageDialog(null,"Cop added.");
+                this.setVisible(false);
+                for (JFrame frame : formList) {
+                    if(frame instanceof AddEmployee1){
+                        ((AddEmployee1) frame).clear();
+                    }
+                    if (frame instanceof EmployeeInfo) {
+                        frame.setVisible(true);
+                        break;
+                    }
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(AddEmployeeClerical.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null,"Some of the fields are invalid.","Error",JOptionPane.ERROR_MESSAGE);
+            }
+            try {
+                st.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(AddEmployeeClerical.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_jButton4submitClicked
 
     private void jButton3backClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3backClicked

@@ -155,7 +155,7 @@ public class AddDepartment extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel5.setText("Contact*   05");
+        jLabel5.setText("Contact*   0");
 
         ContactField.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
 
@@ -374,9 +374,17 @@ public class AddDepartment extends javax.swing.JFrame {
 
     private void jButton2submitClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2submitClicked
         // TODO add your handling code here:
-        if(StationField.getSelectedItem().toString().equals("N/A")||FloorField.getSelectedItem().toString().equals("N/A")
-                ||NameField.getText().isEmpty()||ContactField.getText().isEmpty()){
+        if(NameField.getText().isEmpty()||ContactField.getText().isEmpty()){
             JOptionPane.showMessageDialog(null,"Please enter valid values","Error",JOptionPane.ERROR_MESSAGE);
+        }
+        else if(ContactField.getText().trim().length()!=9){
+            JOptionPane.showMessageDialog(null,"Please enter a valid mobile number.","Error",JOptionPane.ERROR_MESSAGE);
+        }
+        else if(StationField.getSelectedItem().toString().equals("N/A")){
+            JOptionPane.showMessageDialog(null,"Please enter a valid station location.","Error",JOptionPane.ERROR_MESSAGE);
+        }
+        else if(FloorField.getSelectedItem().toString().equals("N/A")){
+            JOptionPane.showMessageDialog(null,"Please enter a valid floor number.","Error",JOptionPane.ERROR_MESSAGE);
         }
         else{
             Connection conn = OracleJDBCConnection.connectDataBase();

@@ -95,20 +95,10 @@ public class AddEmployeeGuard extends javax.swing.JFrame {
         jLabel5.setText("Hourly Rate*");
 
         HourField.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        HourField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                HourFieldActionPerformed(evt);
-            }
-        });
 
         RankField.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
 
         RateField.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        RateField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RateFieldActionPerformed(evt);
-            }
-        });
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jButton1.setText("Submit");
@@ -132,6 +122,11 @@ public class AddEmployeeGuard extends javax.swing.JFrame {
         workCB.setVisible(false);
         workCB.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         workCB.setModel(work);
+        workCB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                workCBActionPerformed(evt);
+            }
+        });
 
         workLabel.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         workLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -307,25 +302,24 @@ public class AddEmployeeGuard extends javax.swing.JFrame {
                             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(workLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(200, 200, 200)
-                                .addComponent(jLabel2))
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(RateField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(RankField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(HourField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(workPlaceCB, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(workCB, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(8, 8, 8)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(workPlaceCB, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(RankField)
-                                            .addComponent(RateField, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(HourField)
-                                            .addComponent(workCB, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                        .addGap(14, 14, 14)))
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -369,6 +363,9 @@ public class AddEmployeeGuard extends javax.swing.JFrame {
         RankField.setText("");
         HourField.setText("");
         RateField.setText("");
+        setComboBox();
+        workCB.setSelectedIndex(0);
+        workPlaceCB.setSelectedIndex(0);
     }
     
     private void submitClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitClicked
@@ -452,14 +449,6 @@ public class AddEmployeeGuard extends javax.swing.JFrame {
                         }
                     }
     }//GEN-LAST:event_backClicked
-
-    private void HourFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HourFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_HourFieldActionPerformed
-
-    private void RateFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RateFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_RateFieldActionPerformed
     
     public void setComboBox(){
         Connection conn=OracleJDBCConnection.connectDataBase();
@@ -478,12 +467,12 @@ public class AddEmployeeGuard extends javax.swing.JFrame {
             }
         }
         else{ //else if prison
-            workLabel.setText("Prison ID*"); //set label text
+            workLabel.setText("Prison Location*"); //set label text
             work.removeAllElements();
             Statement st=null;
             try {
                 st=conn.createStatement();
-                ResultSet rs=st.executeQuery("SELECT PRISON_ID FROM PRISON"); //select all prison ids
+                ResultSet rs=st.executeQuery("SELECT PRISON_LOCATION FROM PRISON"); //select all prison ids
                 while(rs.next()){
                     work.addElement(rs.getString(1)); //add to combobox
                 }
@@ -670,6 +659,11 @@ public class AddEmployeeGuard extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_addCellBtnClicked
+
+    private void workCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_workCBActionPerformed
+        // TODO add your handling code here:
+        //Employee.prison=workCB.getSelectedItem().toString();
+    }//GEN-LAST:event_workCBActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu EmpMenu;

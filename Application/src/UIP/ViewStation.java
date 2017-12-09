@@ -55,10 +55,10 @@ public class ViewStation extends javax.swing.JFrame {
             Connection conn=OracleJDBCConnection.connectDataBase();
             try {
             Statement st=conn.createStatement();
-            ResultSet rs=st.executeQuery("SELECT DEPT_NAME FROM STATION natural join CONSIST_OF natural join DEPARTMENT "
+            ResultSet rs=st.executeQuery("SELECT DEPT_NAME,FLOOR_NO FROM STATION natural join CONSIST_OF natural join DEPARTMENT "
                     + "WHERE LOWER(STATION_LOCATION) LIKE LOWER('%"+StationField.getText().trim()+"%')");
             while(rs.next()){
-                dept.addElement(rs.getString(1));
+                dept.addElement(rs.getString(1)+" in Floor "+rs.getInt(2));
             }
         } catch (SQLException ex) {
             Logger.getLogger(AddEmployee1.class.getName()).log(Level.SEVERE, null, ex);

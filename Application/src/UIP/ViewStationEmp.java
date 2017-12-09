@@ -43,6 +43,7 @@ public class ViewStationEmp extends javax.swing.JFrame {
     }
 
     public void clear(){
+        stationName.setText("");
         StationField.setText("");
         setLists();
         jPanel1.setVisible(false);
@@ -60,12 +61,17 @@ public class ViewStationEmp extends javax.swing.JFrame {
             Statement st=conn.createStatement();
             ResultSet rs=st.executeQuery("SELECT EMP_ID,EMP_NAME,CONTACT, HIRE_DATE FROM EMPLOYEE natural join STATION "
                     + "WHERE LOWER(STATION_LOCATION) LIKE LOWER('%"+StationField.getText().trim()+"%')");
+            if(!rs.next()){
+                JOptionPane.showMessageDialog(null,"No employees in the entered station");
+            }
+            
             while(rs.next()){
                 IDListField.addElement(rs.getString(1));
                 nameList.addElement(rs.getString(2));
                 contactList.addElement(rs.getString(3));
                 hireList.addElement(rs.getString(4).replaceFirst(" 00:00:00.0", ""));
                 jPanel1.setVisible(true);
+            
             }
         } catch (SQLException ex) {
             Logger.getLogger(ViewStationEmp.class.getName()).log(Level.SEVERE, null, ex);
@@ -99,6 +105,7 @@ public class ViewStationEmp extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        stationName = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         FileMenu = new javax.swing.JMenu();
         exit = new javax.swing.JMenuItem();
@@ -377,21 +384,25 @@ public class ViewStationEmp extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(16, 16, 16)
+                                        .addComponent(stationName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(StationField))))))
+                                    .addComponent(StationField)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -400,15 +411,19 @@ public class ViewStationEmp extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(StationField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton1)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(stationName)
+                        .addGap(9, 9, 9)))
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -432,6 +447,8 @@ public class ViewStationEmp extends javax.swing.JFrame {
             }
             if(station==null)
                 JOptionPane.showMessageDialog(null,"Station not found.");
+            else
+                stationName.setText("Location: "+station);
             jPanel1.setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(AddEmployee1.class.getName()).log(Level.SEVERE, null, ex);
@@ -656,6 +673,7 @@ public class ViewStationEmp extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JLabel stationName;
     private javax.swing.JMenuItem viewDept;
     private javax.swing.JMenuItem viewEmp;
     private javax.swing.JMenuItem viewInmate;
