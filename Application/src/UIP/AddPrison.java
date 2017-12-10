@@ -61,7 +61,6 @@ public class AddPrison extends javax.swing.JFrame {
         exit = new javax.swing.JMenuItem();
         EmpMenu = new javax.swing.JMenu();
         addEmp = new javax.swing.JMenuItem();
-        editEmp = new javax.swing.JMenuItem();
         viewEmp = new javax.swing.JMenuItem();
         StationMenu = new javax.swing.JMenu();
         viewStation = new javax.swing.JMenuItem();
@@ -127,15 +126,6 @@ public class AddPrison extends javax.swing.JFrame {
             }
         });
         EmpMenu.add(addEmp);
-
-        editEmp.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.CTRL_MASK));
-        editEmp.setText("Edit Employee");
-        editEmp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editEmpBtnClicked(evt);
-            }
-        });
-        EmpMenu.add(editEmp);
 
         viewEmp.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
         viewEmp.setText("View Employee");
@@ -353,19 +343,6 @@ public class AddPrison extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_addEmpBtnClicked
 
-    private void editEmpBtnClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editEmpBtnClicked
-        // TODO add your handling code here:
-        this.setVisible(false);
-        for (JFrame frame : formList) {
-            if (frame instanceof EditEmployee) {
-                ((EditEmployee) frame).clear();
-                frame.setVisible(true);
-                break;
-
-            }
-        }
-    }//GEN-LAST:event_editEmpBtnClicked
-
     private void viewEmpBtnClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewEmpBtnClicked
         // TODO add your handling code here:
         this.setVisible(false);
@@ -519,7 +496,6 @@ public class AddPrison extends javax.swing.JFrame {
     private javax.swing.JMenuItem addInmate;
     private javax.swing.JMenuItem addPrison;
     private javax.swing.JMenuItem addStation;
-    private javax.swing.JMenuItem editEmp;
     private javax.swing.JMenuItem exit;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
