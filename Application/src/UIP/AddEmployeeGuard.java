@@ -88,7 +88,7 @@ public class AddEmployeeGuard extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel4.setText("Rank (1-7)*");
+        jLabel4.setText("Rank (1-5)*");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -371,6 +371,9 @@ public class AddEmployeeGuard extends javax.swing.JFrame {
     private void submitClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitClicked
         if(HourField.getText().equals("")||RankField.getText().equals("")||RateField.getText().equals("")){
             JOptionPane.showMessageDialog(null,"Some of the fields are invalid","Error",JOptionPane.ERROR_MESSAGE);
+        }
+        else if(Integer.parseInt(RankField.getText())>5||Integer.parseInt(RankField.getText())<1){
+            JOptionPane.showMessageDialog(null,"Please enter rank between 1 and 5","Error",JOptionPane.ERROR_MESSAGE);
         }
         else{
         Connection conn = OracleJDBCConnection.connectDataBase();
