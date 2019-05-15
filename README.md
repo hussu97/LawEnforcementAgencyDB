@@ -1,7 +1,7 @@
 # Law Enforcement System
-![Main Page](/screenshots/main.png)
-**Project for - CMP320 - Database Systems**
-**Project Duration - October-December 2017**
+![Main Page](/screenshots/main.png)  
+**Project for - CMP320 - Database Systems**  
+**Project Duration - October-December 2017**  
 **Collaborators - [Gehad Aboarab](https://github.com/gehad-aboarab), [Ahmed Abou Bakr](https://github.com/ahmed8498/)**
 ***
 A system built using the Java Swing library, and Oracle SQL as the database for the system.
