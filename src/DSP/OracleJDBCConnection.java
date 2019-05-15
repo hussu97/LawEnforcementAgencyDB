@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 public class OracleJDBCConnection {
     
  public static String JDBC_CONNECTION_DRIVER =  "oracle.jdbc.driver.OracleDriver"; 
- public static String  CONNECTION_STRING = "jdbc:oracle:thin:tf20170006/tf20170006@coeoracle.aus.edu:1521:orcl";
+ public static String  CONNECTION_STRING = "jdbc:oracle:thin:username/password@domainname:port:orcl";
  public static Connection connectDataBase()
  {
      System.out.println("-------- Oracle JDBC Connection Testing ------");
