@@ -60,4 +60,4 @@ $ cd LawEnforcementSystem
 ![Station Information](/screenshots/stationinfo.png)
 ***
 ## License
-[GNUv3](https://github.com/hussu97/mediCords/blob/master/LICENSE)
+[GNUv3](https://github.com/hussu97/LawEnforcementSystem/blob/develop/LICENSE)
